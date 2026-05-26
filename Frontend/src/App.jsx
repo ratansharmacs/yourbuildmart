@@ -2340,100 +2340,349 @@ function Testimonials() {
 // ─── BLOG SECTION ─────────────────────────────────────────────────────────────
 function BlogSection() {
   const { dark } = useTheme();
+
   const [current, setCurrent] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const autoRef = useRef(null);
 
-  // Track mobile breakpoint reactively
-  useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth <= 768);
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
+  const visibleCards = window.innerWidth <= 768 ? 1 : 2;
 
-  const visibleCards = isMobile ? 1 : 2;
+  // Infinite loop
   const loopBlogs = [...BLOGS, ...BLOGS];
 
-  // Autoplay
+  const cardGlass = dark
+    ? "rgba(18,18,18,0.42)"
+    : "rgba(255,255,255,0.14)";
+
+  const glassBorder = dark
+    ? "rgba(255,255,255,0.07)"
+    : "rgba(255,255,255,0.18)";
+
+  const titleColor = dark ? "#fff" : "#111";
+
+  const arrowBg = dark ? "#242424" : "#fff";
+  const arrowColor = dark ? "#fff" : "#111";
+
+  const trackBg = dark
+    ? "rgba(255,255,255,0.12)"
+    : "rgba(0,0,0,0.08)";
+
+  // ─── AUTOPLAY ─────────────────────
   useEffect(() => {
-    autoRef.current = setInterval(() => setCurrent((p) => p + 1), 4200);
+    autoRef.current = setInterval(() => {
+      setCurrent((prev) => prev + 1);
+    }, 4200);
+
     return () => clearInterval(autoRef.current);
   }, []);
 
   // Infinite reset
   useEffect(() => {
     if (current >= BLOGS.length) {
-      setTimeout(() => setCurrent(0), 650);
+      setTimeout(() => {
+        setCurrent(0);
+      }, 650);
     }
   }, [current]);
 
   const resetAuto = () => {
     clearInterval(autoRef.current);
-    autoRef.current = setInterval(() => setCurrent((p) => p + 1), 4200);
+
+    autoRef.current = setInterval(() => {
+      setCurrent((prev) => prev + 1);
+    }, 4200);
   };
 
-  const next = () => { setCurrent((p) => p + 1); resetAuto(); };
-  const prev = () => { setCurrent((p) => (p === 0 ? BLOGS.length - 1 : p - 1)); resetAuto(); };
+  const next = () => {
+    setCurrent((prev) => prev + 1);
+    resetAuto();
+  };
 
-  // Theme-derived values kept minimal — only things that can't be done in CSS
-  const cardGlass   = dark ? "rgba(18,18,18,0.42)"      : "rgba(255,255,255,0.14)";
-  const glassBorder = dark ? "rgba(255,255,255,0.07)"   : "rgba(255,255,255,0.18)";
-  const titleColor  = dark ? "#fff" : "#111";
-  const arrowBg     = dark ? "#242424" : "#fff";
-  const arrowColor  = dark ? "#fff"    : "#111";
-  const trackBg     = dark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)";
-
-  // Per-card width: on mobile 100%, on desktop 50% minus the gap
-  const cardWidth = visibleCards === 1 ? "100%" : "calc(50% - 10px)";
-
-  // Translate: each step moves one card-width + gap (20px)
-  const translateX = visibleCards === 1
-    ? `calc(-${current * 100}% - ${current * 20}px)`
-    : `calc(-${current * 50}% - ${current * 10}px)`;
+  const prev = () => {
+    setCurrent((prev) =>
+      prev === 0 ? BLOGS.length - 1 : prev - 1
+    );
+    resetAuto();
+  };
 
   return (
-    <section className="home-blog-section">
-      <div className="home-blog-container">
-        {/* Heading */}
-        <p className="home-blog-label">Knowledge Hub</p>
-        <h2 className="home-blog-heading" style={{ color: titleColor }}>
-          Latest from Our Blog
-        </h2>
+    <section
+      style={{
+        padding: "72px 0",
+        overflow: "hidden",
+      }}
+    >
+      <style>{`
+        .blog-track{
+          display:flex;
+          gap:20px;
+          will-change:transform;
+        }
 
-        {/* Carousel */}
-        <div className="home-blog-carousel-wrap">
-          {/* Left arrow */}
+        .blog-card{
+          position:relative;
+          overflow:hidden;
+          border-radius:20px;
+          flex-shrink:0;
+        }
+
+        .blog-image{
+          width:100%;
+          height:100%;
+          object-fit:cover;
+          display:block;
+        }
+
+        .blog-overlay{
+          position:absolute;
+          inset:0;
+          background:linear-gradient(
+            to top,
+            rgba(0,0,0,.84) 0%,
+            rgba(0,0,0,.34) 48%,
+            rgba(0,0,0,.08) 100%
+          );
+        }
+
+        .blog-glass{
+          position:absolute;
+          left:12px;
+          right:12px;
+          bottom:12px;
+          backdrop-filter:blur(16px);
+          -webkit-backdrop-filter:blur(16px);
+        }
+
+        @media(max-width:768px){
+
+          .blog-card{
+            width:100% !important;
+          }
+
+          .blog-main-card{
+            height:320px !important;
+          }
+
+          .blog-glass{
+            left:10px !important;
+            right:10px !important;
+            bottom:10px !important;
+            padding:10px 12px !important;
+            min-height:120px !important;
+          }
+
+          .blog-title{
+            font-size:14px !important;
+            line-height:1.35 !important;
+          }
+
+          .blog-desc{
+            font-size:11px !important;
+            line-height:1.5 !important;
+          }
+        }
+      `}</style>
+
+      <div
+        style={{
+          maxWidth: 1420,
+          margin: "0 auto",
+          padding: "0 clamp(16px,4vw,40px)",
+        }}
+      >
+        {/* ─── HEADING ───────────────── */}
+        <div style={{ marginBottom: 34 }}>
+          <p
+            style={{
+              color: "#e62e04",
+              fontWeight: 700,
+              letterSpacing: "2px",
+              fontSize: 11,
+              textTransform: "uppercase",
+              marginBottom: 10,
+            }}
+          >
+            Knowledge Hub
+          </p>
+
+          <h2
+            style={{
+              fontSize: "clamp(28px,4vw,48px)",
+              fontWeight: 900,
+              lineHeight: 1.08,
+              color: titleColor,
+              fontFamily: "'Georgia', serif",
+              margin: 0,
+            }}
+          >
+            Latest from Our Blog
+          </h2>
+        </div>
+
+        {/* ─── CAROUSEL ───────────────── */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 16,
+            position: "relative",
+          }}
+        >
+          {/* LEFT */}
           <button
-            className="home-blog-arrow"
             onClick={prev}
-            style={{ background: arrowBg, color: arrowColor }}
-          >❮</button>
+            style={{
+              width: 42,
+              height: 42,
+              borderRadius: "50%",
+              border: "none",
+              background: arrowBg,
+              color: arrowColor,
+              cursor: "pointer",
+              flexShrink: 0,
+              zIndex: 5,
+              boxShadow: "0 5px 14px rgba(0,0,0,0.12)",
+            }}
+          >
+            ❮
+          </button>
 
-          {/* Viewport */}
-          <div className="home-blog-viewport">
+          {/* VIEWPORT */}
+          <div
+            style={{
+              overflow: "hidden",
+              width: "100%",
+            }}
+          >
             <div
-              className="home-blog-track"
+              className="blog-track"
               style={{
-                transition: current >= BLOGS.length ? "none" : "transform .65s cubic-bezier(.22,.61,.36,1)",
-                transform: translateX,
+                transition:
+                  current >= BLOGS.length
+                    ? "none"
+                    : "transform .65s cubic-bezier(.22,.61,.36,1)",
+
+                transform: `translateX(calc(-${
+                  current * (100 / visibleCards)
+                }% - ${current * 10}px))`,
               }}
             >
               {loopBlogs.map((b, i) => (
-                <div key={i} className="home-blog-card" style={{ width: cardWidth }}>
-                  <img src={b.img} alt={b.title} className="home-blog-img" />
-                  <div className="home-blog-overlay" />
+                <div
+                  key={i}
+                  className="blog-card blog-main-card"
+                  style={{
+                    width:
+                      visibleCards === 1
+                        ? "100%"
+                        : "calc(50% - 10px)",
+
+                    height: 360,
+                    background: "#111",
+                  }}
+                >
+                  {/* IMAGE */}
+                  <img
+                    src={b.img}
+                    alt={b.title}
+                    className="blog-image"
+                  />
+
+                  {/* OVERLAY */}
+                  <div className="blog-overlay" />
+
+                  {/* GLASS CONTENT */}
                   <div
-                    className="home-blog-glass"
+                    className="blog-glass"
                     style={{
                       background: cardGlass,
                       border: `1px solid ${glassBorder}`,
+                      borderRadius: 14,
+                      padding: "10px 12px",
+                      minHeight: 160,
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
                     }}
                   >
-                    <div className="home-blog-cat">{b.category}</div>
-                    <h3 className="home-blog-title">{b.title}</h3>
-                    <p className="home-blog-desc">{b.excerpt}</p>
-                    <div className="home-blog-footer">
-                      <a href={b.href} className="home-blog-readmore">View More →</a>
+                    {/* CATEGORY */}
+                    <div
+                      style={{
+                        color: "#ff6b3d",
+                        fontSize: 9,
+                        fontWeight: 700,
+                        letterSpacing: "1.2px",
+                        textTransform: "uppercase",
+                        marginBottom: 6,
+                      }}
+                    >
+                      {b.category}
+                    </div>
+
+                    {/* TITLE */}
+                    <h3
+                      className="blog-title"
+                      style={{
+                        color: "#fff",
+                        fontSize: 15,
+                        lineHeight: 1.35,
+                        marginBottom: 6,
+                        fontWeight: 800,
+                      }}
+                    >
+                      {b.title}
+                    </h3>
+
+                    {/* DESC */}
+                    <p
+                      className="blog-desc"
+                      style={{
+                        color: "rgba(255,255,255,0.78)",
+                        fontSize: 12,
+                        lineHeight: 1.55,
+                        marginBottom: 12,
+                        display: "-webkit-box",
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: "vertical",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {b.excerpt}
+                    </p>
+
+                    {/* BOTTOM */}
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: 10,
+                        marginTop: "auto",
+                      }}
+                    >
+                      {/* BUTTON */}
+                      <a
+                        href={b.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          height: 34,
+                          minWidth: 104,
+                          padding: "0 14px",
+                          borderRadius: 9,
+                          background: "#e62e04",
+                          color: "#fff",
+                          textDecoration: "none",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontWeight: 700,
+                          fontSize: 11.5,
+                          whiteSpace: "nowrap",
+                          flexShrink: 0,
+                        }}
+                      >
+                        View More →
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -2441,24 +2690,53 @@ function BlogSection() {
             </div>
           </div>
 
-          {/* Right arrow */}
+          {/* RIGHT */}
           <button
-            className="home-blog-arrow"
             onClick={next}
-            style={{ background: arrowBg, color: arrowColor }}
-          >❯</button>
+            style={{
+              width: 42,
+              height: 42,
+              borderRadius: "50%",
+              border: "none",
+              background: arrowBg,
+              color: arrowColor,
+              cursor: "pointer",
+              flexShrink: 0,
+              zIndex: 5,
+              boxShadow: "0 5px 14px rgba(0,0,0,0.12)",
+            }}
+          >
+            ❯
+          </button>
         </div>
 
-        {/* Dots */}
-        <div className="home-blog-dots">
+        {/* DOTS */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 8,
+            marginTop: 22,
+          }}
+        >
           {BLOGS.map((_, i) => (
             <button
               key={i}
-              className="home-blog-dot"
-              onClick={() => { setCurrent(i); resetAuto(); }}
+              onClick={() => {
+                setCurrent(i);
+                resetAuto();
+              }}
               style={{
                 width: current % BLOGS.length === i ? 22 : 7,
-                background: current % BLOGS.length === i ? "#e62e04" : trackBg,
+                height: 7,
+                borderRadius: 20,
+                border: "none",
+                cursor: "pointer",
+                background:
+                  current % BLOGS.length === i
+                    ? "#e62e04"
+                    : trackBg,
+                transition: "all .3s ease",
               }}
             />
           ))}
@@ -2467,6 +2745,7 @@ function BlogSection() {
     </section>
   );
 }
+
 
 
 // ─── APP ─────────────────────────────────────────────────────────────────────

@@ -10,25 +10,23 @@ import Blog from "./pages/Blog";
 import Product from "./pages/Product";
 import Brands from "./pages/Brands";
 import ProductDetail from "./pages/ProductDetail";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <ThemeProvider>
         <CartProvider>
+          {/* ── Persistent hero animation canvas — lives behind every page ── */}
           <GlobalAnimationBackground />
+
           <Routes>
-            <Route path="/"             element={<App />} />
-            <Route path="/about"        element={<About />} />
-            <Route path="/contact"      element={<Contact />} />
-            <Route path="/blog"         element={<Blog />} />
-            <Route path="/products"     element={<Product />} />
-            <Route path="/brands"       element={<Brands />} />
+            <Route path="/"              element={<App />} />
+            <Route path="/about"         element={<About />} />
+            <Route path="/contact"       element={<Contact />} />
+            <Route path="/blog"          element={<Blog />} />
+            <Route path="/products"      element={<Product />} />
+            <Route path="/brands"        element={<Brands />} />
             <Route path="/productDetail" element={<ProductDetail />} />
-            <Route path="/login"        element={<Login />} />
-            <Route path="/register"     element={<Register />} />
           </Routes>
         </CartProvider>
       </ThemeProvider>

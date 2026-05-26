@@ -14,31 +14,3 @@
   .blog-card-img    { width: 100%; height: 200px; }
   .blog-card-body   { padding: 20px; }
 }
-
-/* ─── Home Page Blog Carousel ──────────────────────────────────────────────── */
-.home-blog-section          { padding: 72px 0; overflow: hidden; }
-.home-blog-container        { max-width: 1420px; margin: 0 auto; padding: 0 clamp(16px,4vw,40px); }
-.home-blog-label            { color: #e62e04; font-weight: 700; letter-spacing: 2px; font-size: 11px; text-transform: uppercase; margin-bottom: 10px; }
-.home-blog-heading          { font-size: clamp(28px,4vw,48px); font-weight: 900; line-height: 1.08; font-family: 'Georgia', serif; margin: 0 0 34px; }
-.home-blog-carousel-wrap    { display: flex; align-items: center; gap: 16px; position: relative; }
-.home-blog-viewport         { overflow: hidden; width: 100%; }
-.home-blog-track            { display: flex; gap: 20px; will-change: transform; }
-.home-blog-card             { position: relative; overflow: hidden; border-radius: 20px; flex-shrink: 0; width: calc(50% - 10px); height: 360px; background: #111; }
-.home-blog-img              { width: 100%; height: 100%; object-fit: cover; display: block; }
-.home-blog-overlay          { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.84) 0%, rgba(0,0,0,.34) 48%, rgba(0,0,0,.08) 100%); }
-.home-blog-glass            { position: absolute; left: 12px; right: 12px; bottom: 12px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-radius: 14px; padding: 10px 12px; min-height: 160px; display: flex; flex-direction: column; justify-content: space-between; }
-.home-blog-cat              { color: #ff6b3d; font-size: 9px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 6px; }
-.home-blog-title            { color: #fff; font-size: 15px; line-height: 1.35; margin-bottom: 6px; font-weight: 800; }
-.home-blog-desc             { color: rgba(255,255,255,0.78); font-size: 12px; line-height: 1.55; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.home-blog-footer           { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; }
-.home-blog-readmore         { height: 34px; min-width: 104px; padding: 0 14px; border-radius: 9px; background: #e62e04; color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 11.5px; white-space: nowrap; flex-shrink: 0; }
-.home-blog-arrow            { width: 42px; height: 42px; border-radius: 50%; border: none; cursor: pointer; flex-shrink: 0; z-index: 5; box-shadow: 0 5px 14px rgba(0,0,0,0.12); font-size: 16px; }
-.home-blog-dots             { display: flex; justify-content: center; gap: 8px; margin-top: 22px; }
-.home-blog-dot              { height: 7px; border-radius: 20px; border: none; cursor: pointer; transition: all .3s ease; }
-
-@media (max-width: 768px) {
-  .home-blog-card            { width: 100% !important; height: 320px !important; }
-  .home-blog-glass           { left: 10px !important; right: 10px !important; bottom: 10px !important; padding: 10px 12px !important; min-height: 120px !important; }
-  .home-blog-title           { font-size: 14px !important; line-height: 1.35 !important; }
-  .home-blog-desc            { font-size: 11px !important; line-height: 1.5 !important; }
-}
