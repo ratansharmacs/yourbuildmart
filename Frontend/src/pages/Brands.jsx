@@ -1,48 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { SharedHeader, useTheme, ThemeContext, Footer } from "../components";
+import { SharedHeader, useTheme, Footer } from "../components";
+import { BRAND_LIST, BRAND_CATEGORIES, BRAND_TOP_PRODUCTS } from "../data/brandsData";
 import { Link } from "react-router-dom";
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 
-const BRAND_LIST = [
-  { name: "ABB", href: "https://yourbuildmart.com/brand/abb", img: "https://yourbuildmart.com/public/uploads/all/U3vHSo6epE3ARS5X8EwltXTJWEQgeJGIwiOAxoRS.png" },
-  { name: "China Hongqiao Group Limited", href: "https://yourbuildmart.com/brand/china-hongqiao-group-limited", img: "https://yourbuildmart.com/public/uploads/all/mfahTdlfjR8vvyGolhF8aaUKshBqVzPCkXo8sz77.png" },
-  { name: "Foshan Shenghai Aluminium", href: "https://yourbuildmart.com/brand/foshan-shenghai-aluminium", img: "https://yourbuildmart.com/public/uploads/all/H1vp8BGwbjz8O6LrBhGM7Xj71sFtvQyMxghdS54p.jpg" },
-  { name: "Gyproc", href: "https://yourbuildmart.com/brand/Gyproc-12MLZ", img: "https://yourbuildmart.com/public/uploads/all/7u4hCVub6qswOZ6LmYOtLyLOe65p1QPhNzucDBxY.png" },
-  { name: "Havells", href: "https://yourbuildmart.com/brand/Havells-MeYuo", img: "https://yourbuildmart.com/public/uploads/all/pqPKFk4BNaQpi9vLGzkWjnOc3Qw1QY8hTjV28E79.png" },
-  { name: "Hindalco", href: "https://yourbuildmart.com/brand/Hindalco-1PNCD", img: "https://yourbuildmart.com/public/assets/img/hindalco.png" },
-  { name: "Jindal Aluminum", href: "https://yourbuildmart.com/brand/Jindal-Aluminum-OQBw1", img: "https://yourbuildmart.com/public/assets/img/jindal.png" },
-  { name: "Jindal Steel", href: "https://yourbuildmart.com/brand/Jindal-Steel-07ec0", img: "https://yourbuildmart.com/public/assets/img/jindal.png" },
-  { name: "JSW Steel", href: "https://yourbuildmart.com/brand/JSW-Steel-jdlOa", img: "https://yourbuildmart.com/public/assets/img/jsw.png" },
-  { name: "Larsen & Toubro", href: "https://yourbuildmart.com/brand/Larsen--Toubro-zjoxT", img: "https://yourbuildmart.com/public/uploads/all/LwXhCzBLJCdXvipjCeSfoE0i9iL7jNK2Y0KkDd3l.png" },
-  { name: "Lesso", href: "https://yourbuildmart.com/brand/Lesso-g3Nvo", img: "https://yourbuildmart.com/public/uploads/all/hIlwDoF53qyzUkYzrF9QjbcFcmJ5yzkDCtSWFNpP.jpg" },
-  { name: "Octal Corporation", href: "https://yourbuildmart.com/brand/Octal-Corporation-L12c5", img: "https://yourbuildmart.com/public/uploads/all/hIlwDoF53qyzUkYzrF9QjbcFcmJ5yzkDCtSWFNpP.jpg" },
-  { name: "Shanghai Metal Corporation (SMC)", href: "https://yourbuildmart.com/brand/Shanghai-Metal-Corporation-SMC-LHeRH", img: "https://yourbuildmart.com/public/uploads/all/LwXhCzBLJCdXvipjCeSfoE0i9iL7jNK2Y0KkDd3l.png" },
-  { name: "Steel Authority of India (SAIL)", href: "https://yourbuildmart.com/brand/steel-authortiy-of-india", img: "https://yourbuildmart.com/public/uploads/all/9fPVZFXDHJKh2whj7wG7wYLCBxXvtr7aSPxejY1u.png" },
-  { name: "Supreme PVC and Steel Pipe Corp", href: "https://yourbuildmart.com/brand/Supreme-PVC-and-Steel-Pipe-Corp-a8LdZ", img: "https://yourbuildmart.com/public/assets/img/supreme.png" },
-  { name: "TPMC Steel", href: "https://yourbuildmart.com/brand/TPMC-Steel-zVSI1", img: "https://yourbuildmart.com/public/uploads/all/AGLZdUVO1cQuLcDCCkSh1sFbfnkwcAeLFXR58rrh.jpg" },
-];
 
-const CATEGORIES = [
-  { name: "Aluminium Products", href: "/products?category=Aluminium+Products", img: "https://yourbuildmart.com/public/uploads/all/qvzksoytHBhKDMaxSxSwpVQtGlod5C0S4TlOvyCZ.png" },
-  { name: "Electrical Products", href: "/products?category=Electrical+Products", img: "https://yourbuildmart.com/public/uploads/all/ylpqNpVuBFrDi40XUABTmoEqdVSVZHmXdxC04d9O.jpg" },
-  { name: "False Ceiling", href: "/products?category=False+Ceiling", img: "https://yourbuildmart.com/public/uploads/all/Sel9jonaPtZyRXyMNJBGGzUnlOyws0lBNt78iaen.jpg" },
-  { name: "Fire Fighting", href: "/products?category=Fire+Fighting", img: "https://yourbuildmart.com/public/uploads/all/G98hSbCqpgGs4u7l116dQRNkdnVowdyYliKEVerr.jpg" },
-  { name: "Industrial Valves", href: "/products?category=Industrial+Valves", img: "https://yourbuildmart.com/public/uploads/all/uHmWHxUbUReKl6zaKd4xgJ3FX1MgxRpZNGULlmUP.jpg" },
-  { name: "PEB Structure", href: "/products?category=PEB+Structure", img: "https://yourbuildmart.com/public/uploads/all/blJXzfApTXVc3364qVExp6aNwVo9dCs80CaEqfXG.jpg" },
-  { name: "Steel Sections & Accessories", href: "https://yourbuildmart.com/steel-sections-and-accessories-products", img: "https://yourbuildmart.com/public/uploads/all/DLcjTi8wNsrumAc5poqrwuxCx9UmRHhJnZwlPFdI.jpg" },
-  { name: "TMT Steel", href: "/products?category=TMT+Steel", img: "https://yourbuildmart.com/public/assets/img/steel__bars.jpg" },
-  { name: "Plumbing Products", href: "https://yourbuildmart.com/plumbing-products", img: "https://yourbuildmart.com/public/uploads/all/oH3uf21AfjDe8KZjlk0eFmOBrJO56azYpWizh7nd.jpg" },
-];
 
-const TOP_PRODUCTS = [
-  { name: "Aluminium C-Channel", href: "/products?category=Aluminium+Products" },
-  { name: "Aluminium T Section", href: "/products?category=Aluminium+Products" },
-  { name: "Electrical Transformer", href: "/products?category=Electrical+Products" },
-  { name: "PVC Insulated Electrical Wires", href: "/products?category=Electrical+Products" },
-  { name: "Metal False Ceiling Channel", href: "/products?category=False+Ceiling" },
-  { name: "False Ceiling Joint Tape", href: "/products?category=False+Ceiling" },
-];
 
 // ─── SHARED ANIMATIONS ────────────────────────────────────────────────────────
 const GLOBAL_STYLES = `
@@ -127,7 +91,7 @@ function Sidebar({ dark, activeBrand, setActiveBrand }) {
   };
 
   return (
-    <aside style={{ width: 260, flexShrink: 0 }}>
+    <aside className="brands-sidebar-col" style={{ width: 260, flexShrink: 0 }}>
       {/* Explore by Brand */}
       <SideCard title="Explore by Brand">
         {BRAND_LIST.map((b) => (
@@ -139,7 +103,7 @@ function Sidebar({ dark, activeBrand, setActiveBrand }) {
 
       {/* Categories */}
       <SideCard title="Product Categories">
-        {CATEGORIES.map((c) => (
+        {BRAND_CATEGORIES.map((c) => (
           <SideLink key={c.name} href={c.href}>
             <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <img src={c.img} alt={c.name} style={{ width: 20, height: 20, objectFit: "contain", borderRadius: 3, background: dark ? "#222" : "#f5f5f5" }} onError={e => e.target.style.display = "none"} />
@@ -151,7 +115,7 @@ function Sidebar({ dark, activeBrand, setActiveBrand }) {
 
       {/* Top Selling */}
       <SideCard title="Top Selling Products">
-        {TOP_PRODUCTS.map((p) => (
+        {BRAND_TOP_PRODUCTS.map((p) => (
           <SideLink key={p.name} href={p.href}>{p.name}</SideLink>
         ))}
       </SideCard>
@@ -185,7 +149,7 @@ function BrandCard({ brand, dark, highlighted }) {
   return (
     <a href={brand.href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "block" }}
       onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-      <div style={{
+      <div className="ray-card" style={{
         background: cardBg,
         border: `1px solid ${highlighted ? "#e62e04" : (hovered ? "#e62e04" : cardBorder)}`,
         borderRadius: 14,
@@ -247,7 +211,7 @@ function BrandsGrid() {
   return (
     <section style={{ background: dark ? "#0d0d0d" : "#f4f5f7", minHeight: "70vh", padding: "48px 0 80px" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(16px,4vw,48px)" }}>
-        <div style={{ display: "flex", gap: 32, alignItems: "flex-start" }}>
+        <div style={{ display: "flex", gap: 32, alignItems: "flex-start" }} className="brands-layout">
 
           {/* ── Sidebar ── */}
           <Sidebar dark={dark} activeBrand={activeBrand} setActiveBrand={setActiveBrand} />
@@ -294,7 +258,7 @@ function BrandsGrid() {
 
             {/* Grid */}
             {filtered.length > 0 ? (
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 20 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 20 }} className="brand-card-grid">
                 {filtered.map((brand, i) => (
                   <div key={brand.name} style={{ animation: `fadeUp 0.4s ease both`, animationDelay: `${Math.min(i * 40, 400)}ms` }}>
                     <BrandCard brand={brand} dark={dark} highlighted={activeBrand === brand.name} />
@@ -310,7 +274,7 @@ function BrandsGrid() {
             )}
 
             {/* Partner CTA strip */}
-            <div style={{ marginTop: 56, background: dark ? "#111" : "#fff", borderRadius: 16, padding: "36px 40px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, flexWrap: "wrap", border: `1px solid ${dark ? "#1e1e1e" : "#e8e8e8"}`, boxShadow: dark ? "0 4px 24px rgba(0,0,0,0.3)" : "0 4px 24px rgba(0,0,0,0.06)" }}>
+            <div style={{ marginTop: 56, background: "transparent", borderRadius: 16, padding: "36px 40px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, flexWrap: "wrap", border: `1px solid ${dark ? "#1e1e1e" : "#e8e8e8"}`, boxShadow: dark ? "0 4px 24px rgba(0,0,0,0.3)" : "0 4px 24px rgba(0,0,0,0.06)" }}>
               <div>
                 <h3 style={{ fontSize: 22, fontWeight: 800, color: dark ? "#fff" : "#111", marginBottom: 8, letterSpacing: "-0.5px" }}>
                   Don't see your brand? <span style={{ color: "#e62e04" }}>Let's talk.</span>
@@ -336,23 +300,13 @@ function BrandsGrid() {
 
 // ─── PAGE EXPORT ──────────────────────────────────────────────────────────────
 export default function BrandsPage() {
-  const [dark, setDark] = useState(false);
-  const toggle = () => setDark(d => !d);
-
-  useEffect(() => {
-    document.body.style.background = dark ? "#0d0d0d" : "#fff";
-    document.body.style.transition = "background 0.4s ease";
-  }, [dark]);
-
+  const { dark } = useTheme();
   return (
-    <ThemeContext.Provider value={{ dark, toggle }}>
-      <style>{GLOBAL_STYLES}</style>
-      <div style={{ overflowX: "hidden", fontFamily: "Segoe UI", background: dark ? "#0d0d0d" : "#fff", transition: "background 0.4s ease" }}>
+      <div style={{ overflowX: "hidden", fontFamily: "Segoe UI", background: "transparent", transition: "background 0.4s ease" }}>
         <SharedHeader activePage="/brands" />
         <BrandsHero />
         <BrandsGrid />
         <Footer />
       </div>
-    </ThemeContext.Provider>
   );
 }

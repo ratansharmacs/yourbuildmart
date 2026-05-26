@@ -1,0 +1,11 @@
+/* ─── Contact Page Styles ────────────────────────────────────────────────────── */
+.contact-grid       { display: grid; grid-template-columns: 1fr 380px; gap: 48px; }
+.contact-form-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+@media (max-width: 900px) {
+  .contact-grid     { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .contact-form-grid{ grid-template-columns: 1fr; }
+  .contact-map iframe { height: 250px !important; }
+}

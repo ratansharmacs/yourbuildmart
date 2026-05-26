@@ -283,22 +283,22 @@ export default function SharedHeader({ activePage = "" }) {
                 <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
               </svg>
             </button>
-            <a href="https://yourbuildmart.com/users/login" target="_blank" rel="noopener noreferrer" style={{
+            <Link to="/login" style={{
               background: "none", border: "1.5px solid #e62e04", color: "#e62e04",
               padding: "7px 16px", borderRadius: 6, fontWeight: 700, fontSize: 13,
               textDecoration: "none", transition: "all 0.2s",
             }}
               onMouseEnter={e => { e.currentTarget.style.background = "#e62e04"; e.currentTarget.style.color = "#fff"; }}
               onMouseLeave={e => { e.currentTarget.style.background = "none"; e.currentTarget.style.color = "#e62e04"; }}
-            >Login</a>
-            <a href="https://yourbuildmart.com/users/registration" target="_blank" rel="noopener noreferrer" style={{
+            >Login</Link>
+            <Link to="/register" style={{
               background: "#e62e04", color: "#fff", padding: "7px 16px",
               borderRadius: 6, fontWeight: 700, fontSize: 13, textDecoration: "none",
               transition: "background 0.2s",
             }}
               onMouseEnter={e => e.currentTarget.style.background = "#c42500"}
               onMouseLeave={e => e.currentTarget.style.background = "#e62e04"}
-            >Register</a>
+            >Register</Link>
             <button onClick={() => setCartOpen(true)} style={{
               position: "relative", background: dark ? "#1e1e1e" : "#f5f5f5", border: "none",
               borderRadius: 6, width: 38, height: 38, display: "flex", alignItems: "center",
@@ -420,15 +420,15 @@ export default function SharedHeader({ activePage = "" }) {
               </div>
             ))}
             <div style={{ padding: "16px clamp(16px,4vw,24px)", display: "flex", gap: 12 }}>
-              <a href="https://yourbuildmart.com/users/login" target="_blank" rel="noopener noreferrer" style={{
+              <Link to="/login" style={{
                 flex: 1, textAlign: "center", background: "none", border: "1.5px solid #e62e04",
                 color: "#e62e04", padding: "10px", borderRadius: 6, fontWeight: 700, fontSize: 14,
                 textDecoration: "none",
-              }}>Login</a>
-              <a href="https://yourbuildmart.com/users/registration" target="_blank" rel="noopener noreferrer" style={{
+              }}>Login</Link>
+              <Link to="/register" style={{
                 flex: 1, textAlign: "center", background: "#e62e04", color: "#fff",
                 padding: "10px", borderRadius: 6, fontWeight: 700, fontSize: 14, textDecoration: "none",
-              }}>Register</a>
+              }}>Register</Link>
             </div>
           </div>
         )}
@@ -436,15 +436,6 @@ export default function SharedHeader({ activePage = "" }) {
 
       {/* Cart Drawer */}
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
-
-      {/* Floating Contact Button */}
-      <Link to="/contact" style={{
-        position: "fixed", right: 0, top: "50%", transform: "translateY(-50%) rotate(-90deg) translateX(50%)",
-        background: "#e62e04", color: "#fff", padding: "10px 18px",
-        borderRadius: "8px 8px 0 0", fontWeight: 700, fontSize: 13,
-        textDecoration: "none", zIndex: 998, letterSpacing: "0.5px",
-        boxShadow: "-2px 0 12px rgba(0,0,0,0.2)",
-      }}>Contact Us</Link>
     </>
   );
 }

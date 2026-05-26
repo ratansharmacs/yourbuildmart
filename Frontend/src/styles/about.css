@@ -1,0 +1,21 @@
+/* ─── About Page Styles ──────────────────────────────────────────────────────── */
+.about-who-grid         { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-bottom: 64px; }
+.about-vision-grid      { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 80px; }
+.about-offer-grid       { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.about-sustain-grid     { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.about-cert-grid        { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 32px; }
+
+@media (max-width: 900px) {
+  .about-offer-grid     { grid-template-columns: repeat(2, 1fr); }
+  .about-cert-grid      { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .about-who-grid       { grid-template-columns: 1fr; gap: 32px; }
+  .about-vision-grid    { grid-template-columns: 1fr; }
+  .about-sustain-grid   { grid-template-columns: 1fr; direction: ltr !important; }
+  .about-sustain-grid > div { direction: ltr !important; }
+}
+@media (max-width: 480px) {
+  .about-offer-grid     { grid-template-columns: 1fr; }
+  .about-cert-grid      { grid-template-columns: 1fr; }
+}

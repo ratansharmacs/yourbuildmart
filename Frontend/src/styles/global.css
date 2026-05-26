@@ -1,0 +1,207 @@
+/* ─── Global Base Styles ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html  { scroll-behavior: smooth; }
+body  { font-family: 'Poppins', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; overflow-x: hidden; transition: background 0.4s ease, color 0.4s ease; }
+img   { max-width: 100%; height: auto; display: block; }
+a     { transition: color 0.2s, background 0.2s; }
+button{ transition: all 0.2s; }
+
+/* Scrollbar */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #e62e04; border-radius: 4px; }
+
+/* Custom animations */
+@keyframes fadeIn          { from { opacity: 0; }                         to { opacity: 1; } }
+@keyframes fadeUp          { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideInRight    { from { transform: translateX(100%); }        to { transform: translateX(0); } }
+@keyframes slideInDown     { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeSlideDown   { from { opacity: 0; transform: translateY(-8px); }  to { opacity: 1; transform: translateY(0); } }
+@keyframes cartBounce      { 0%,100% { transform: scale(1); } 30% { transform: scale(1.25); } 60% { transform: scale(0.92); } }
+@keyframes marqueeScroll   { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes pulseGlow       { 0%,100% { box-shadow: 0 0 16px rgba(230,46,4,0.4); } 50% { box-shadow: 0 0 32px rgba(230,46,4,0.75); } }
+@keyframes pulse           { 0%,100% { box-shadow: 0 0 0 0 rgba(230,46,4,0.4); } 50% { box-shadow: 0 0 0 8px rgba(230,46,4,0); } }
+@keyframes shimmer         { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
+@keyframes slideUp         { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeUp-anim     { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Product card hover helpers */
+.prod-card:hover .prod-img    { transform: scale(1.06); }
+.prod-card:hover .prod-overlay{ opacity: 1; }
+.prod-card:hover              { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.15) !important; }
+
+/* Sidebar category active */
+.sidebar-cat:hover   { background: #fef0ed; color: #e62e04; }
+.sidebar-cat.active-cat          { background: #e62e04 !important; color: #fff !important; }
+.sidebar-cat.active-cat span     { color: #fff !important; }
+
+/* Tab content */
+.tab-content-area ul  { padding-left: 20px; }
+.tab-content-area li  { margin-bottom: 6px; line-height: 1.7; }
+.tab-content-area p   { margin-bottom: 10px; line-height: 1.7; }
+.tab-content-area strong, .tab-content-area b { font-weight: 700; }
+
+/* Scrollbar hide helper */
+.hide-scrollbar              { -ms-overflow-style: none; scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SEAMLESS HERO ANIMATION — visible across every section
+   ═══════════════════════════════════════════════════════════════════════════
+   The GlobalAnimationBackground canvas is position:fixed, z-index:0.
+   It draws the hero animation (blobs, particles, grid, streams, scan lines,
+   hex ring, brackets) as a SOLID background — it IS the page background.
+
+   Every section, div, and element that previously had a solid background
+   colour must become transparent so the canvas shows through.
+   Cards, inputs, sidebars etc. keep their own backgrounds for readability.
+   Header and Footer keep their backgrounds. Everything else → transparent.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Body and root: transparent — canvas handles the base colour */
+body {
+  background: transparent !important;
+}
+#root,
+#root > div {
+  background: transparent !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── All page sections → transparent ──────────────────────────────────────── */
+section {
+  background: transparent !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Inner wrapper divs that carry solid backgrounds in inline styles ────── */
+/* These are the maxWidth containers, layout divs, etc.                       */
+/* We use a specific selector so only the direct section backgrounds clear.  */
+section > div {
+  background: transparent !important;
+}
+
+/* ── Page-level wrappers (App, About, Blog, Products, Brands, Contact) ───── */
+.page-wrapper,
+.page-bg,
+.page-glass {
+  background: transparent !important;
+}
+
+/* ── Breadcrumb / page hero bars ─────────────────────────────────────────── */
+.page-hero {
+  background: transparent !important;
+}
+
+/* ── Products / Blog / About / Contact page outer backgrounds ────────────── */
+.products-outer,
+.blog-outer,
+.about-outer,
+.contact-outer,
+.brands-outer {
+  background: transparent !important;
+}
+
+/* ── KEEP opaque backgrounds on: cards, inputs, modals, sidebar, header/footer */
+/* Cards stay readable */
+.prod-card,
+.blog-card,
+.brand-card,
+.stat-card,
+[class*="-card"],
+[class*="card-"] {
+  position: relative;
+  z-index: 2;
+}
+
+/* Sidebar and breadcrumb inner content needs a frosted glass so text is readable */
+.blog-sidebar > div,
+.products-sidebar,
+.sidebar-cat,
+.brands-sidebar-col > div {
+  background: transparent !important;
+}
+
+/* ── Inline-style background overrides (React inline styles trump CSS) ────── *
+ * We cannot override inline styles with CSS alone. The approach here is:
+ * – The section::before pseudo-element provides a semi-transparent frost
+ *   that sits between the canvas and the section content.
+ * – This frost is thin enough that the animation clearly shows through.     */
+
+section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Light mode: very light translucent wash */
+  background: rgba(245, 242, 238, 0.38);
+  z-index: 0;
+  pointer-events: none;
+  transition: background 0.4s ease;
+}
+
+/* Dark mode frost — also thin, just enough for contrast */
+.dark-mode section::before,
+[data-theme="dark"] section::before {
+  background: rgba(9, 9, 11, 0.42);
+}
+
+/* All direct children of sections sit above the frost */
+section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Hero section: no frost needed — it has its own rich background layers ─ */
+section.hero-section::before {
+  background: transparent !important;
+}
+
+/* ── Footer and Header: keep their own backgrounds, just ensure z-index ──── */
+footer,
+header,
+nav,
+.site-header,
+.shared-header {
+  position: relative;
+  z-index: 100;
+}
+
+/* ── Alternating section frost depth — gives the "diving" layered feel ───── */
+/* Odd sections slightly lighter, even slightly darker, so you sense depth    */
+section:nth-child(odd)::before {
+  background: rgba(245, 242, 238, 0.32);
+}
+section:nth-child(even)::before {
+  background: rgba(245, 242, 238, 0.44);
+}
+.dark-mode section:nth-child(odd)::before,
+[data-theme="dark"] section:nth-child(odd)::before {
+  background: rgba(9, 9, 11, 0.36);
+}
+.dark-mode section:nth-child(even)::before,
+[data-theme="dark"] section:nth-child(even)::before {
+  background: rgba(9, 9, 11, 0.50);
+}
+
+/* ── Mobile: slightly more opaque so text stays legible on small screens ─── */
+@media (max-width: 640px) {
+  section::before,
+  section:nth-child(odd)::before,
+  section:nth-child(even)::before {
+    background: rgba(245, 242, 238, 0.58) !important;
+  }
+  .dark-mode section::before,
+  .dark-mode section:nth-child(odd)::before,
+  .dark-mode section:nth-child(even)::before,
+  [data-theme="dark"] section::before,
+  [data-theme="dark"] section:nth-child(odd)::before,
+  [data-theme="dark"] section:nth-child(even)::before {
+    background: rgba(9, 9, 11, 0.65) !important;
+  }
+}
+
+/* Hide scrollbar for categories track */
+.cat-track::-webkit-scrollbar { display: none; }

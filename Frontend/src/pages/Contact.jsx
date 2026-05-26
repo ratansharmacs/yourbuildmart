@@ -1,33 +1,10 @@
-import { useState, useEffect, useRef } from "react";
-import { SharedHeader, useTheme, ThemeContext, Footer } from "../components";
+import { useState } from "react";
+import { SharedHeader, useTheme, Footer } from "../components";
+import { PRODUCTS_OPTIONS, COUNTRIES, OFFICES, SOCIAL_LINKS, MAP_EMBED_URL } from "../data/contactData";
 import { Link } from "react-router-dom";
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
-
-const PRODUCTS_OPTIONS = [
-  "Aluminium C-Channel", "Aluminium Hollow Pipe", "Aluminium I Section", "Aluminium Profile Section", "Aluminium T Section",
-  "Electrical Concealed Metal Boxes", "Electric Cables", "Electrical Distribution Box", "Electrical MCB Breaker",
-  "Electrical Main Panel Board", "Electrical Conduit Pipe", "Electrical Switch and Sockets", "Electrical Transformer",
-  "PVC Insulated Electrical Wires", "Metal False Ceiling Channel", "False Ceiling Clips & Fasteners", "False Ceiling Joint Tape",
-  "Fire Doors", "Fire Hydrant and Accessories", "Fire Fighting Pipes and Pipe Hangers – Galvanized Iron Pipes",
-  "Plumbing Accessories", "Plumbing PVC Pipe", "PEB - Pre Engineered Building", "Galvanized Iron (GI) Roofing Sheets",
-  "Steel Sections and Channels", "Steel Pipe", "Steel Precision Tubes and Pipes", "Steel Sheet", "TMT Steel Bars",
-  "Fire Fighting Grooved Pipe Fittings and Coupling", "Fire Protection Valves", "Butterfly Valves",
-  "Gate, Globe, Check Valves, Cryogenic & Bellow-sealed Valves – Bolted Bonnet",
-];
-
-const COUNTRIES = [
-  "Afghanistan", "Albania", "Algeria", "Angola", "Argentina", "Australia", "Austria", "Bahrain", "Bangladesh",
-  "Belgium", "Brazil", "Canada", "Chile", "China", "Colombia", "Congo", "Denmark", "Egypt", "Ethiopia",
-  "Finland", "France", "Germany", "Ghana", "Greece", "India", "Indonesia", "Iran", "Iraq", "Ireland",
-  "Israel", "Italy", "Japan", "Jordan", "Kenya", "Kuwait", "Lebanon", "Libya", "Malaysia", "Mexico",
-  "Morocco", "Mozambique", "Myanmar", "Netherlands", "New Zealand", "Nigeria", "Norway", "Oman",
-  "Pakistan", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda",
-  "Saudi Arabia", "Senegal", "Singapore", "South Africa", "South Korea", "Spain", "Sri Lanka", "Sudan",
-  "Sweden", "Switzerland", "Tanzania", "Thailand", "Tunisia", "Turkey", "Uganda", "UAE", "UK",
-  "Ukraine", "USA", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe",
-];
 
 // ─── THEME TOGGLE ─────────────────────────────────────────────────────────────
 
@@ -39,7 +16,7 @@ const COUNTRIES = [
 function PageHero() {
   const { dark } = useTheme();
   return (
-    <section style={{ background: dark ? "#111" : "#f7f7f7", borderBottom: `1px solid ${dark ? "#222" : "#eee"}`, padding: "40px 0", transition: "background 0.4s" }}>
+    <section style={{ background: "transparent", borderBottom: `1px solid ${dark ? "#222" : "#eee"}`, padding: "40px 0", transition: "background 0.4s" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(16px,4vw,48px)" }}>
         <h1 style={{ fontSize: 36, fontWeight: 800, color: dark ? "#fff" : "#111", marginBottom: 10, letterSpacing: "-0.5px" }}>Contact Us</h1>
         <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: dark ? "#888" : "#666" }}>
@@ -119,9 +96,9 @@ function ContactSection() {
           <p style={{ fontSize: 16, color: textColor, maxWidth: 560, margin: "0 auto" }}>Fill out the form below and our team will get back to you within 24 hours.</p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 380px", gap: 48 }}>
+        <div className="contact-grid" style={{ gap: 48 }}>
           {/* Form */}
-          <div style={{ background: dark ? "#111" : "#fff", borderRadius: 20, padding: 48, boxShadow: dark ? "0 4px 32px rgba(0,0,0,0.4)" : "0 4px 32px rgba(0,0,0,0.07)", transition: "background 0.4s" }}>
+          <div style={{ background: "transparent", borderRadius: 20, padding: 48, boxShadow: dark ? "0 4px 32px rgba(0,0,0,0.4)" : "0 4px 32px rgba(0,0,0,0.07)", transition: "background 0.4s" }}>
             {submitted ? (
               <div style={{ textAlign: "center", padding: "48px 0" }}>
                 <div style={{ fontSize: 64, marginBottom: 20 }}>✅</div>
@@ -134,7 +111,7 @@ function ContactSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 0 }}>
+                <div className="contact-form-grid" style={{ gap: 16, marginBottom: 0 }}>
 
                   {/* Product Select */}
                   <div style={{ gridColumn: "1 / -1", marginBottom: 4 }}>
@@ -323,22 +300,13 @@ function ContactSection() {
 
 // ─── APP ─────────────────────────────────────────────────────────────────────
 export default function ContactPage() {
-  const [dark, setDark] = useState(false);
-  const toggle = () => setDark(d => !d);
-
-  useEffect(() => {
-    document.body.style.background = dark ? "#0d0d0d" : "#fff";
-    document.body.style.transition = "background 0.4s ease";
-  }, [dark]);
-
+  const { dark } = useTheme();
   return (
-    <ThemeContext.Provider value={{ dark, toggle }}>
-      <div style={{ overflowX: "hidden", fontFamily: "Segoe UI", background: dark ? "#0d0d0d" : "#fff", transition: "background 0.4s ease" }}>
+    <div style={{ overflowX: "hidden", fontFamily: "Segoe UI", background: "transparent", transition: "background 0.4s ease" }}>
         <SharedHeader activePage="/contact" />
         <PageHero />
         <ContactSection />
         <Footer />
       </div>
-    </ThemeContext.Provider>
   );
 }

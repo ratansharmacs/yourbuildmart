@@ -1,0 +1,10 @@
+/* ─── Products Page Styles ───────────────────────────────────────────────────── */
+.products-layout    { display: grid; grid-template-columns: 260px 1fr; gap: 28px; align-items: start; }
+.product-grid       { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+@media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 900px)  {
+  .products-layout  { grid-template-columns: 1fr; }
+  .products-sidebar { display: none; }
+}
+@media (max-width: 500px)  { .product-grid { grid-template-columns: 1fr; } }

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { ThemeContext, useTheme, SharedHeader, Footer } from "./components";
+import { useTheme, SharedHeader, Footer } from "./components";
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 const NAV_LINKS = [
@@ -129,7 +129,7 @@ const STATS = [
   { end: 300, label: "Timely Deliveries", suffix: "+", duration: 1800 },
   { end: 400, label: "Products", suffix: "+", duration: 2000 },
   { end: 500, label: "Happy Customers", suffix: "+", duration: 2200 },
-  { end: 80,  label: "Partner Brands",  suffix: "+", duration: 1600 },
+  { end: 80, label: "Partner Brands", suffix: "+", duration: 1600 },
 ];
 
 const TESTIMONIALS = [
@@ -181,18 +181,21 @@ const BLOGS = [
     title: "Affordable Construction Material for African and European Countries",
     category: "Logistics",
     href: "/blog",
+    excerpt: "Globalisation has marked a dent on various aspects of life throughout the world, which also includes a continuing change in infrastructure and architecture across continents.",
   },
   {
     img: "https://yourbuildmart.com/public/uploads/all/ueOyzSRgkdaNabL9MoVBRGhSQcC82VdkZup4qpdb.jpg",
     title: "Cladded Valves: What You Need to Know",
     category: "Order Protection",
     href: "/blog",
+    excerpt: "Milton Danny, Head of Product Management presents Cladded Valves as a cost-effective alternative to solid alloy valves for corrosive environments.",
   },
   {
     img: "https://yourbuildmart.com/public/uploads/all/NyxEjph6tvdW6iBmKI2jpOFekIrYacpg52T2Ne5S.jpg",
     title: "TMT Steel Bars: The Backbone of Modern Construction",
     category: "Industry Insights",
     href: "/blog",
+    excerpt: "In the modern construction industry, strength and durability are paramount. TMT steel bars have revolutionized the sector with their ability to withstand extreme conditions over time.",
   },
 ];
 
@@ -332,9 +335,9 @@ function LiveCounter({ end, suffix = "+", duration = 2200, trigger }) {
 
 // ─── TYPEWRITER HOOK ──────────────────────────────────────────────────────────
 function useTypewriter(lines, typingSpeed = 68, pauseAfter = 1800, deleteSpeed = 38) {
-  const [lineIdx, setLineIdx]     = useState(0);
-  const [charIdx, setCharIdx]     = useState(0);
-  const [deleting, setDeleting]   = useState(false);
+  const [lineIdx, setLineIdx] = useState(0);
+  const [charIdx, setCharIdx] = useState(0);
+  const [deleting, setDeleting] = useState(false);
   const [displayed, setDisplayed] = useState("");
 
   useEffect(() => {
@@ -414,27 +417,27 @@ function HeroSection() {
   };
 
   // Theme tokens
-  const heroBg        = dark ? "#09090b"              : "#f5f2ee";
-  const headingColor  = dark ? "#fafaf9"               : "#0c0a09";
-  const bodyColor     = dark ? "rgba(250,250,249,0.5)" : "rgba(12,10,9,0.5)";
-  const tagBg         = dark ? "rgba(230,46,4,0.12)"   : "rgba(230,46,4,0.08)";
-  const tagBorder     = dark ? "rgba(230,46,4,0.4)"    : "rgba(230,46,4,0.28)";
-  const divider       = dark ? "rgba(250,250,249,0.1)" : "rgba(12,10,9,0.1)";
-  const statNum       = dark ? "#fafaf9"               : "#0c0a09";
-  const statLbl       = dark ? "rgba(250,250,249,0.38)": "rgba(12,10,9,0.36)";
-  const btnGlass      = dark ? "rgba(250,250,249,0.06)": "rgba(12,10,9,0.05)";
-  const btnGlassBd    = dark ? "rgba(250,250,249,0.18)": "rgba(12,10,9,0.16)";
-  const btnGlassClr   = dark ? "#fafaf9"               : "#0c0a09";
-  const scrollClr     = dark ? "rgba(250,250,249,0.3)" : "rgba(12,10,9,0.3)";
-  const gridClr       = dark ? "rgba(255,255,255,0.03)": "rgba(0,0,0,0.04)";
-  const cardShell     = dark ? "rgba(20,20,22,0.95)"   : "rgba(255,255,255,0.95)";
-  const cardBrd       = dark ? "rgba(255,255,255,0.08)": "rgba(0,0,0,0.08)";
-  const cardTxt       = dark ? "#fafaf9"               : "#0c0a09";
-  const cardSub       = dark ? "rgba(250,250,249,0.5)" : "rgba(12,10,9,0.48)";
+  const heroBg = dark ? "#09090b" : "#f5f2ee";
+  const headingColor = dark ? "#fafaf9" : "#0c0a09";
+  const bodyColor = dark ? "rgba(250,250,249,0.5)" : "rgba(12,10,9,0.5)";
+  const tagBg = dark ? "rgba(230,46,4,0.12)" : "rgba(230,46,4,0.08)";
+  const tagBorder = dark ? "rgba(230,46,4,0.4)" : "rgba(230,46,4,0.28)";
+  const divider = dark ? "rgba(250,250,249,0.1)" : "rgba(12,10,9,0.1)";
+  const statNum = dark ? "#fafaf9" : "#0c0a09";
+  const statLbl = dark ? "rgba(250,250,249,0.38)" : "rgba(12,10,9,0.36)";
+  const btnGlass = dark ? "rgba(250,250,249,0.06)" : "rgba(12,10,9,0.05)";
+  const btnGlassBd = dark ? "rgba(250,250,249,0.18)" : "rgba(12,10,9,0.16)";
+  const btnGlassClr = dark ? "#fafaf9" : "#0c0a09";
+  const scrollClr = dark ? "rgba(250,250,249,0.3)" : "rgba(12,10,9,0.3)";
+  const gridClr = dark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.04)";
+  const cardShell = dark ? "rgba(20,20,22,0.95)" : "rgba(255,255,255,0.95)";
+  const cardBrd = dark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)";
+  const cardTxt = dark ? "#fafaf9" : "#0c0a09";
+  const cardSub = dark ? "rgba(250,250,249,0.5)" : "rgba(12,10,9,0.48)";
 
   // Parallax tilt on the card stack
   const tiltX = mousePos.y * -4;
-  const tiltY = mousePos.x *  4;
+  const tiltY = mousePos.x * 4;
 
   return (
     <section
@@ -444,12 +447,13 @@ function HeroSection() {
         position: "relative",
         minHeight: "100vh",
         overflow: "hidden",
-        background: heroBg,
+        background: "transparent",
         transition: "background 0.45s ease",
         display: "flex",
         alignItems: "center",
       }}
     >
+
       {/* ─── ALL KEYFRAMES ─── */}
       <style>{`
         @keyframes slideInLeft {
@@ -578,267 +582,393 @@ function HeroSection() {
         }
       `}</style>
 
-      {/* ── LAYER 0: Rich animated background ── */}
+      {/* ── LAYER 0: Rich animated background ── =====================================================================================================================================*/}
 
       {/* Large vivid blobs */}
       <div style={{
-        position:"absolute", top:"-25%", right:"5%",
-        width:900, height:900, borderRadius:"50%",
+        position: "absolute", top: "-25%", right: "5%",
+        width: 900, height: 900, borderRadius: "50%",
         background: dark
-          ? "radial-gradient(circle, rgba(230,46,4,0.22) 0%, rgba(180,30,0,0.08) 45%, transparent 70%)"
-          : "radial-gradient(circle, rgba(230,46,4,0.16) 0%, rgba(255,100,50,0.06) 45%, transparent 70%)",
-        animation:"blobOrbit 18s ease-in-out infinite",
-        pointerEvents:"none", zIndex:0,
-        filter:"blur(2px)",
-      }}/>
+          ? "radial-gradient(circle, rgba(230,46,4,0.14) 0%, rgba(180,30,0,0.05) 45%, transparent 70%)"
+          : "radial-gradient(circle, rgba(230,46,4,0.10) 0%, rgba(255,100,50,0.04) 45%, transparent 70%)",
+        animation: "blobOrbit 18s ease-in-out infinite",
+        pointerEvents: "none", zIndex: 0,
+        filter: "blur(2px)",
+      }} />
       <div style={{
-        position:"absolute", bottom:"-20%", left:"0%",
-        width:700, height:700, borderRadius:"50%",
+        position: "absolute", bottom: "-20%", left: "0%",
+        width: 700, height: 700, borderRadius: "50%",
         background: dark
-          ? "radial-gradient(circle, rgba(120,60,255,0.18) 0%, rgba(80,30,200,0.06) 45%, transparent 68%)"
-          : "radial-gradient(circle, rgba(255,180,60,0.18) 0%, rgba(230,120,20,0.06) 45%, transparent 68%)",
-        animation:"blobOrbit 26s ease-in-out 4s infinite reverse",
-        pointerEvents:"none", zIndex:0,
-        filter:"blur(3px)",
-      }}/>
+          ? "radial-gradient(circle, rgba(120,60,255,0.11) 0%, rgba(80,30,200,0.04) 45%, transparent 68%)"
+          : "radial-gradient(circle, rgba(255,180,60,0.11) 0%, rgba(230,120,20,0.04) 45%, transparent 68%)",
+        animation: "blobOrbit 26s ease-in-out 4s infinite reverse",
+        pointerEvents: "none", zIndex: 0,
+        filter: "blur(3px)",
+      }} />
       <div style={{
-        position:"absolute", top:"25%", left:"35%",
-        width:500, height:500, borderRadius:"50%",
+        position: "absolute", top: "25%", left: "35%",
+        width: 500, height: 500, borderRadius: "50%",
         background: dark
           ? "radial-gradient(circle, rgba(230,46,4,0.12) 0%, transparent 60%)"
           : "radial-gradient(circle, rgba(230,46,4,0.09) 0%, transparent 60%)",
-        animation:"blobOrbit 16s ease-in-out 8s infinite",
-        pointerEvents:"none", zIndex:0,
-      }}/>
+        animation: "blobOrbit 16s ease-in-out 8s infinite",
+        pointerEvents: "none", zIndex: 0,
+      }} />
       {/* Extra accent blob top-left */}
       <div style={{
-        position:"absolute", top:"10%", left:"-5%",
-        width:420, height:420, borderRadius:"50%",
+        position: "absolute", top: "10%", left: "-5%",
+        width: 420, height: 420, borderRadius: "50%",
         background: dark
           ? "radial-gradient(circle, rgba(0,200,160,0.09) 0%, transparent 60%)"
           : "radial-gradient(circle, rgba(0,160,230,0.08) 0%, transparent 60%)",
-        animation:"blobPulse 12s ease-in-out 2s infinite",
-        pointerEvents:"none", zIndex:0,
-        filter:"blur(4px)",
-      }}/>
+        animation: "blobPulse 12s ease-in-out 2s infinite",
+        pointerEvents: "none", zIndex: 0,
+        filter: "blur(4px)",
+      }} />
 
       {/* Animated grid lines */}
-      <div style={{ position:"absolute", inset:0, zIndex:0, pointerEvents:"none", overflow:"hidden" }}>
-        {Array.from({length:14}).map((_,i)=>(
+      <div style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", overflow: "hidden" }}>
+        {Array.from({ length: 14 }).map((_, i) => (
           <div key={`vl-${i}`} style={{
-            position:"absolute", left:`${(i/14)*100}%`, top:0, bottom:0, width:1,
+            position: "absolute", left: `${(i / 14) * 100}%`, top: 0, bottom: 0, width: 1,
             background: dark
-              ? `linear-gradient(to bottom, transparent 0%, rgba(230,46,4,${0.04+i%3*0.015}) 50%, transparent 100%)`
-              : `linear-gradient(to bottom, transparent 0%, rgba(230,46,4,${0.03+i%3*0.01}) 50%, transparent 100%)`,
-            animation:`gridDrift ${10+i*0.5}s linear ${i*0.25}s infinite`,
-          }}/>
+              ? `linear-gradient(to bottom, transparent 0%, rgba(230,46,4,${0.04 + i % 3 * 0.015}) 50%, transparent 100%)`
+              : `linear-gradient(to bottom, transparent 0%, rgba(230,46,4,${0.03 + i % 3 * 0.01}) 50%, transparent 100%)`,
+            animation: `gridDrift ${10 + i * 0.5}s linear ${i * 0.25}s infinite`,
+          }} />
         ))}
-        {Array.from({length:10}).map((_,i)=>(
+        {Array.from({ length: 10 }).map((_, i) => (
           <div key={`hl-${i}`} style={{
-            position:"absolute", top:`${(i/10)*100}%`, left:0, right:0, height:1,
+            position: "absolute", top: `${(i / 10) * 100}%`, left: 0, right: 0, height: 1,
             background: dark
               ? "linear-gradient(to right, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%)"
               : "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.04) 50%, transparent 100%)",
-          }}/>
+          }} />
         ))}
       </div>
 
       {/* Floating particles */}
-      {Array.from({length:18}).map((_,i) => {
-        const size = 3 + (i%4)*2;
-        const left = 5 + (i*17)%90;
-        const delay = (i*0.7)%9;
-        const dur   = 9 + (i*1.3)%8;
-        const drift = (-40 + (i*13)%80) + "px";
-        const isRed = i%3===0;
+      {Array.from({ length: 18 }).map((_, i) => {
+        const size = 3 + (i % 4) * 2;
+        const left = 5 + (i * 17) % 90;
+        const delay = (i * 0.7) % 9;
+        const dur = 9 + (i * 1.3) % 8;
+        const drift = (-40 + (i * 13) % 80) + "px";
+        const isRed = i % 3 === 0;
         return (
           <div key={`pt-${i}`} style={{
-            position:"absolute", bottom:"-5%", left:`${left}%`,
-            width:size, height:size, borderRadius:"50%",
+            position: "absolute", bottom: "-5%", left: `${left}%`,
+            width: size, height: size, borderRadius: "50%",
             background: isRed
-              ? `rgba(230,46,4,${0.5+i%3*0.15})`
+              ? `rgba(230,46,4,${0.5 + i % 3 * 0.15})`
               : dark
-                ? `rgba(255,255,255,${0.12+i%4*0.05})`
-                : `rgba(100,60,20,${0.12+i%4*0.05})`,
+                ? `rgba(255,255,255,${0.12 + i % 4 * 0.05})`
+                : `rgba(100,60,20,${0.12 + i % 4 * 0.05})`,
             "--drift": drift,
-            animation:`particleFloat ${dur}s ease-in ${delay}s infinite`,
-            pointerEvents:"none", zIndex:1,
+            animation: `particleFloat ${dur}s ease-in ${delay}s infinite`,
+            pointerEvents: "none", zIndex: 1,
             boxShadow: isRed ? `0 0 8px rgba(230,46,4,0.7)` : "none",
-          }}/>
+          }} />
         );
       })}
 
       {/* Data stream lines — vertical glowing streaks */}
-      {Array.from({length:6}).map((_,i) => (
+      {Array.from({ length: 6 }).map((_, i) => (
         <div key={`stream-${i}`} style={{
-          position:"absolute",
-          left:`${8+(i*16)}%`,
-          top:0,
-          width:1,
-          height:`${60+i*12}px`,
+          position: "absolute",
+          left: `${8 + (i * 16)}%`,
+          top: 0,
+          width: 1,
+          height: `${60 + i * 12}px`,
           background: dark
-            ? `linear-gradient(to bottom, transparent, rgba(230,46,4,${0.6+i%3*0.15}), transparent)`
-            : `linear-gradient(to bottom, transparent, rgba(230,46,4,${0.4+i%3*0.12}), transparent)`,
-          animation:`streamDown ${3.5+i*0.8}s ease-in-out ${i*1.1}s infinite`,
-          pointerEvents:"none", zIndex:1,
-          filter:"blur(0.5px)",
-        }}/>
+            ? `linear-gradient(to bottom, transparent, rgba(230,46,4,${0.6 + i % 3 * 0.15}), transparent)`
+            : `linear-gradient(to bottom, transparent, rgba(230,46,4,${0.4 + i % 3 * 0.12}), transparent)`,
+          animation: `streamDown ${3.5 + i * 0.8}s ease-in-out ${i * 1.1}s infinite`,
+          pointerEvents: "none", zIndex: 1,
+          filter: "blur(0.5px)",
+        }} />
       ))}
 
       {/* Pulse rings from center-right */}
-      {[0,1,2].map(i => (
+      {[0, 1, 2].map(i => (
         <div key={`ring-${i}`} style={{
-          position:"absolute", top:"45%", right:"32%",
-          width:180, height:180, borderRadius:"50%",
-          border:`1.5px solid rgba(230,46,4,${dark?0.35:0.22})`,
-          animation:`ringPulse 3.6s ease-out ${i*1.2}s infinite`,
-          pointerEvents:"none", zIndex:1,
-        }}/>
+          position: "absolute", top: "45%", right: "32%",
+          width: 180, height: 180, borderRadius: "50%",
+          border: `1.5px solid rgba(230,46,4,${dark ? 0.35 : 0.22})`,
+          animation: `ringPulse 3.6s ease-out ${i * 1.2}s infinite`,
+          pointerEvents: "none", zIndex: 1,
+        }} />
       ))}
 
       {/* Spinning hex ring */}
       <div style={{
-        position:"absolute", top:"50%", right:"28%",
-        width:320, height:320,
-        border:`1px solid rgba(230,46,4,${dark?0.14:0.09})`,
-        borderRadius:"50%",
-        animation:"hexSpin 24s linear infinite",
-        pointerEvents:"none", zIndex:1,
-        transform:"translate(-50%,-50%)",
+        position: "absolute", top: "50%",
+        right: "10%",
+        width: "min(320px,70vw)",
+        height: "min(320px,70vw)",
+        border: `1px solid rgba(230,46,4,${dark ? 0.14 : 0.09})`,
+        borderRadius: "50%",
+        animation: "hexSpin 24s linear infinite",
+        pointerEvents: "none", zIndex: 1,
+        transform: "translate(-50%,-50%)",
       }}>
-        {[0,60,120,180,240,300].map(deg=>(
+        {[0, 60, 120, 180, 240, 300].map(deg => (
           <div key={deg} style={{
-            position:"absolute", top:"50%", left:"50%",
-            width:8, height:8, borderRadius:"50%",
-            background:`rgba(230,46,4,${dark?0.7:0.5})`,
-            transform:`rotate(${deg}deg) translateX(155px) translate(-50%,-50%)`,
-            boxShadow:`0 0 10px rgba(230,46,4,0.8)`,
-          }}/>
+            position: "absolute", top: "50%", left: "50%",
+            width: 8, height: 8, borderRadius: "50%",
+            background: `rgba(230,46,4,${dark ? 0.7 : 0.5})`,
+            transform: `rotate(${deg}deg) translateX(155px) translate(-50%,-50%)`,
+            boxShadow: `0 0 10px rgba(230,46,4,0.8)`,
+          }} />
         ))}
       </div>
 
       {/* Diagonal scan lines (more vivid) */}
       <div style={{
-        position:"absolute", width:"200%", height:2,
+        position: "absolute", width: "200%", height: 2,
         background: dark
           ? "linear-gradient(90deg, transparent, rgba(230,46,4,0.5), transparent)"
           : "linear-gradient(90deg, transparent, rgba(230,46,4,0.3), transparent)",
-        transform:"rotate(35deg)", transformOrigin:"top left",
-        animation:"scanLine 7s linear infinite",
-        pointerEvents:"none", zIndex:2,
-        filter:"blur(1px)",
-      }}/>
+        transform: "rotate(35deg)", transformOrigin: "top left",
+        animation: "scanLine 7s linear infinite",
+        pointerEvents: "none", zIndex: 2,
+        filter: "blur(1px)",
+      }} />
       <div style={{
-        position:"absolute", width:"200%", height:1,
+        position: "absolute", width: "200%", height: 1,
         background: dark
           ? "linear-gradient(90deg, transparent, rgba(255,180,60,0.25), transparent)"
           : "linear-gradient(90deg, transparent, rgba(255,140,40,0.18), transparent)",
-        transform:"rotate(35deg)", transformOrigin:"top left",
-        animation:"scanLine 7s linear 3.5s infinite",
-        pointerEvents:"none", zIndex:2,
-      }}/>
+        transform: "rotate(35deg)", transformOrigin: "top left",
+        animation: "scanLine 7s linear 3.5s infinite",
+        pointerEvents: "none", zIndex: 2,
+      }} />
 
       {/* Dot fields */}
       <div style={{
-        position:"absolute", right:"3%", top:"8%",
-        width:200, height:320,
+        position: "absolute", right: "3%", top: "8%",
+        right: "10%",
+        width: "min(320px,70vw)",
+        height: "min(320px,70vw)",
         backgroundImage: dark
           ? "radial-gradient(circle, rgba(230,46,4,0.5) 1.5px, transparent 1.5px)"
           : "radial-gradient(circle, rgba(230,46,4,0.35) 1.5px, transparent 1.5px)",
-        backgroundSize:"22px 22px",
-        animation:"dotPulse 3.5s ease-in-out infinite",
-        pointerEvents:"none", zIndex:1, opacity:0.7,
-      }}/>
+        backgroundSize: "22px 22px",
+        animation: "dotPulse 3.5s ease-in-out infinite",
+        pointerEvents: "none", zIndex: 1, opacity: 0.7,
+      }} />
       <div style={{
-        position:"absolute", left:"1%", bottom:"10%",
-        width:140, height:220,
+        position: "absolute", left: "1%", bottom: "10%",
+        width: "30vw",
+        maxWidth: 140,
+        height: 160,
         backgroundImage: dark
           ? "radial-gradient(circle, rgba(255,255,255,0.25) 1px, transparent 1px)"
           : "radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)",
-        backgroundSize:"18px 18px",
-        animation:"dotPulse 5s ease-in-out 1.5s infinite",
-        pointerEvents:"none", zIndex:1, opacity:0.6,
-      }}/>
+        backgroundSize: "18px 18px",
+        animation: "dotPulse 5s ease-in-out 1.5s infinite",
+        pointerEvents: "none", zIndex: 1, opacity: 0.6,
+      }} />
 
       {/* Glowing corner brackets */}
       <div style={{
-        position:"absolute", top:28, left:28, width:64, height:64,
-        borderTop:`2.5px solid rgba(230,46,4,${dark?0.8:0.55})`,
-        borderLeft:`2.5px solid rgba(230,46,4,${dark?0.8:0.55})`,
-        pointerEvents:"none", zIndex:2,
-        animation:"bracketGlow 2.8s ease-in-out infinite",
-        borderRadius:"2px 0 0 0",
-      }}/>
+        position: "absolute", top: 28, left: 28, width: 64, height: 64,
+        borderTop: `2.5px solid rgba(230,46,4,${dark ? 0.8 : 0.55})`,
+        borderLeft: `2.5px solid rgba(230,46,4,${dark ? 0.8 : 0.55})`,
+        pointerEvents: "none", zIndex: 2,
+        animation: "bracketGlow 2.8s ease-in-out infinite",
+        borderRadius: "2px 0 0 0",
+      }} />
       <div style={{
-        position:"absolute", bottom:28, right:28, width:64, height:64,
-        borderBottom:`2.5px solid rgba(230,46,4,${dark?0.6:0.4})`,
-        borderRight:`2.5px solid rgba(230,46,4,${dark?0.6:0.4})`,
-        pointerEvents:"none", zIndex:2,
-        animation:"bracketGlow 2.8s ease-in-out 1.4s infinite",
-        borderRadius:"0 0 2px 0",
-      }}/>
+        position: "absolute", bottom: 28, right: 28, width: 64, height: 64,
+        borderBottom: `2.5px solid rgba(230,46,4,${dark ? 0.6 : 0.4})`,
+        borderRight: `2.5px solid rgba(230,46,4,${dark ? 0.6 : 0.4})`,
+        pointerEvents: "none", zIndex: 2,
+        animation: "bracketGlow 2.8s ease-in-out 1.4s infinite",
+        borderRadius: "0 0 2px 0",
+      }} />
       {/* Extra top-right bracket */}
       <div style={{
-        position:"absolute", top:28, right:28, width:48, height:48,
-        borderTop:`1.5px solid rgba(230,46,4,${dark?0.4:0.28})`,
-        borderRight:`1.5px solid rgba(230,46,4,${dark?0.4:0.28})`,
-        pointerEvents:"none", zIndex:2,
-        animation:"bracketGlow 3.5s ease-in-out 0.7s infinite",
-      }}/>
+        position: "absolute", top: 28, right: 28, width: 48, height: 48,
+        borderTop: `1.5px solid rgba(230,46,4,${dark ? 0.4 : 0.28})`,
+        borderRight: `1.5px solid rgba(230,46,4,${dark ? 0.4 : 0.28})`,
+        pointerEvents: "none", zIndex: 2,
+        animation: "bracketGlow 3.5s ease-in-out 0.7s infinite",
+      }} />
 
-      {/* ── LAYER 1: Main two-column layout ── */}
-      <div style={{
-        position:"relative", zIndex:10,
-        width:"100%", maxWidth:1280,
-        margin:"0 auto", padding:"clamp(16px,4vw,56px)",
-        display:"flex", alignItems:"center", flexWrap:"wrap",
-        gap:48, minHeight:"100vh",
+      {/* ── LAYER 1: Main two-column layout ── ==============================================================================*/}
+      <style>{`
+  @media (max-width: 768px) {
+
+    .hero-layout{
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+
+      width: 100% !important;
+      max-width: 100% !important;
+
+      padding: 76px 16px 32px !important;
+
+      gap: 20px !important;
+
+      text-align: center !important;
+
+      overflow-x: hidden !important;
+    }
+
+    .hero-left{
+      flex: unset !important;
+
+      width: 100% !important;
+      max-width: 100% !important;
+
+      align-items: center !important;
+
+      text-align: center !important;
+
+      margin: 0 auto !important;
+    }
+
+    .hero-heading{
+      font-size: clamp(30px, 8vw, 42px) !important;
+
+      line-height: 1.15 !important;
+
+      text-align: center !important;
+
+      min-height: auto !important;
+
+      width: 100% !important;
+    }
+
+    .hero-body{
+      font-size: 14px !important;
+
+      text-align: center !important;
+
+      margin-bottom: 18px !important;
+
+      max-width: 100% !important;
+
+      width: 100% !important;
+    }
+
+    .hero-stats{
+      gap: 0 !important;
+
+      margin-bottom: 18px !important;
+
+      padding: 12px 0 !important;
+
+      width: 100% !important;
+    }
+
+    .hero-ctas{
+      flex-wrap: wrap !important;
+
+      justify-content: center !important;
+
+      gap: 10px !important;
+    }
+
+    .hero-right{
+      flex: unset !important;
+
+      width: 100% !important;
+
+      max-width: 100% !important;
+
+      min-width: 0 !important;
+
+      display: flex !important;
+
+      justify-content: center !important;
+
+      margin: 0 auto !important;
+    }
+
+    .hero-progress{
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 400px){
+
+    .hero-ctas{
+      flex-direction: column !important;
+
+      align-items: center !important;
+    }
+
+    .hero-ctas a{
+      width: 100% !important;
+
+      max-width: 260px !important;
+
+      justify-content: center !important;
+    }
+  }
+`}</style>
+      <div className="hero-layout" style={{
+        position: "relative",
+        zIndex: 10,
+        width: "100%",
+        maxWidth: 1280,
+        margin: "0 auto",
+        padding: "clamp(88px,8vw,120px) clamp(14px,4vw,40px) clamp(32px,4vw,70px)",
+        display: "flex",
+        alignItems: "center",
+        flexWrap: "wrap",
+        overflow: "hidden",
+        gap: "clamp(20px,4vw,40px)",
+        minHeight: "auto",
       }}>
 
         {/* ═══ LEFT: Text content ═══ */}
-        <div style={{ flex:"0 0 clamp(280px,45vw,420px)", minWidth:0, display:"flex", flexDirection:"column" }}>
+        <div className="hero-left" style={{ flex: "0 0 clamp(280px,42vw,420px)", minWidth: 0, display: "flex", flexDirection: "column" }}>
 
           {/* Tag pill */}
           <div className={entered ? "hs-t1" : ""} style={{
             opacity: entered ? undefined : 0,
-            display:"inline-flex", alignItems:"center", gap:8,
-            background:tagBg, border:`1px solid ${tagBorder}`,
-            borderRadius:40, padding:"5px 16px", marginBottom:28,
-            width:"fit-content",
+            display: "inline-flex", alignItems: "center", gap: 8,
+            background: tagBg, border: `1px solid ${tagBorder}`,
+            borderRadius: 40, padding: "5px 16px", marginBottom: 16,
+            width: "fit-content",
           }}>
-            <span style={{ width:6, height:6, borderRadius:"50%", background:"#e62e04", display:"inline-block", boxShadow:"0 0 8px rgba(230,46,4,0.9)", animation:"dotPulse 1.8s ease-in-out infinite" }}/>
-            <span style={{ fontSize:10.5, fontWeight:700, color:"#e62e04", letterSpacing:"2.5px", textTransform:"uppercase" }}>ISO Certified · Worldwide Delivery</span>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#e62e04", display: "inline-block", boxShadow: "0 0 8px rgba(230,46,4,0.9)", animation: "dotPulse 1.8s ease-in-out infinite" }} />
+            <span style={{ fontSize: 10.5, fontWeight: 700, color: "#e62e04", letterSpacing: "2.5px", textTransform: "uppercase" }}>ISO Certified · Worldwide Delivery</span>
           </div>
 
           {/* Typewriter heading */}
           <div className={entered ? "hs-t2" : ""} style={{ opacity: entered ? undefined : 0, marginBottom: 22 }}>
-            <h1 style={{
-              fontSize:"clamp(44px,4.8vw,72px)",
-              fontWeight:900,
-              lineHeight:1.06,
-              fontFamily:"'Georgia','Times New Roman',serif",
-              letterSpacing:"-2.5px",
-              margin:0,
-              background:"linear-gradient(120deg,#e62e04 0%,#ff6630 60%,#c42500 100%)",
-              WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent",
-              minHeight:"3.2em",
+            <h1 className="hero-heading" style={{
+              fontSize: "clamp(44px,4.8vw,72px)",
+              fontWeight: 900,
+              lineHeight: 1.06,
+              fontFamily: "'Georgia','Times New Roman',serif",
+              letterSpacing: "-2.5px",
+              margin: 0,
+              background: "linear-gradient(120deg,#e62e04 0%,#ff6630 60%,#c42500 100%)",
+              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+              minHeight: "3.2em",
             }}>
-              {typedHeading}<span className="tw-cursor" style={{ WebkitTextFillColor:"#e62e04" }}/>
+              {typedHeading}<span className="tw-cursor" style={{ WebkitTextFillColor: "#e62e04" }} />
             </h1>
           </div>
 
           {/* Divider accent */}
           <div className={entered ? "hs-t3" : ""} style={{
             opacity: entered ? undefined : 0,
-            width:56, height:3, borderRadius:2,
-            background:"linear-gradient(90deg,#e62e04,transparent)",
-            marginBottom:22,
-          }}/>
+            width: 56, height: 3, borderRadius: 2,
+            background: "linear-gradient(90deg,#e62e04,transparent)",
+            marginBottom: 22,
+          }} />
 
-          <p className={entered ? "hs-t4" : ""} style={{
+          <p className={`${entered ? "hs-t4" : ""} hero-body`} style={{
             opacity: entered ? undefined : 0,
-            fontSize:15.5, color:bodyColor, lineHeight:1.85,
-            marginBottom:36, maxWidth:360, transition:"color 0.4s",
+            fontSize: 15.5, color: bodyColor, lineHeight: 1.85,
+            marginBottom: 36, maxWidth: 360, transition: "color 0.4s",
           }}>
             One platform for all your construction materials — TMT Steel, PEB Structures, Electrical, Aluminium &amp; more. Delivered worldwide.
           </p>
@@ -846,28 +976,28 @@ function HeroSection() {
           {/* Stats row — live counting every visit */}
           <div
             ref={statsRef}
-            className={entered ? "hs-t4" : ""}
+            className={`${entered ? "hs-t4" : ""} hero-stats`}
             style={{
               opacity: entered ? undefined : 0,
-              display:"flex", gap:0, marginBottom:38,
-              borderTop:`1px solid ${divider}`, borderBottom:`1px solid ${divider}`,
-              padding:"18px 0", transition:"border-color 0.4s",
+              display: "flex", gap: 0, marginBottom: 38,
+              borderTop: `1px solid ${divider}`, borderBottom: `1px solid ${divider}`,
+              padding: "18px 0", transition: "border-color 0.4s",
             }}
           >
             {[
-              { end:400, suffix:"+", label:"Products",  duration:1800 },
-              { end:500, suffix:"+", label:"Customers", duration:2200 },
-              { end:80,  suffix:"+", label:"Brands",    duration:1500 },
+              { end: 400, suffix: "+", label: "Products", duration: 1800 },
+              { end: 500, suffix: "+", label: "Customers", duration: 2200 },
+              { end: 80, suffix: "+", label: "Brands", duration: 1500 },
             ].map(({ end, suffix, label, duration }, i) => (
               <div key={label} style={{
-                flex:1, paddingLeft:i>0?20:0,
-                borderLeft:i>0?`1px solid ${divider}`:"none",
+                flex: 1, paddingLeft: i > 0 ? 20 : 0,
+                borderLeft: i > 0 ? `1px solid ${divider}` : "none",
               }}>
                 <div style={{
-                  fontSize:28, fontWeight:900, color:statNum,
-                  letterSpacing:"-1.5px", transition:"color 0.4s",
-                  fontVariantNumeric:"tabular-nums",
-                  fontFamily:"'Georgia','Times New Roman',serif",
+                  fontSize: 28, fontWeight: 900, color: statNum,
+                  letterSpacing: "-1.5px", transition: "color 0.4s",
+                  fontVariantNumeric: "tabular-nums",
+                  fontFamily: "'Georgia','Times New Roman',serif",
                   textShadow: dark
                     ? "0 0 20px rgba(230,46,4,0.4)"
                     : "0 2px 8px rgba(230,46,4,0.2)",
@@ -881,281 +1011,196 @@ function HeroSection() {
                   />
                 </div>
                 <div style={{
-                  fontSize:9.5, color:statLbl, fontWeight:700,
-                  letterSpacing:"1.5px", textTransform:"uppercase",
-                  marginTop:4, transition:"color 0.4s",
+                  fontSize: 9.5, color: statLbl, fontWeight: 700,
+                  letterSpacing: "1.5px", textTransform: "uppercase",
+                  marginTop: 4, transition: "color 0.4s",
                 }}>{label}</div>
               </div>
             ))}
           </div>
 
           {/* CTA buttons */}
-          <div className={entered ? "hs-t5" : ""} style={{
+          <div className={`${entered ? "hs-t5" : ""} hero-ctas`} style={{
             opacity: entered ? undefined : 0,
-            display:"flex", gap:12,
+            display: "flex", gap: 12,
           }}>
             <Link to="/products" style={{
-              background:"#e62e04", color:"#fff", padding:"13px 26px",
-              borderRadius:8, fontWeight:700, fontSize:14, textDecoration:"none",
-              boxShadow:"0 8px 28px rgba(230,46,4,0.38)",
-              transition:"transform 0.2s, box-shadow 0.2s",
-              display:"flex", alignItems:"center", gap:8,
+              background: "#e62e04", color: "#fff", padding: "13px 26px",
+              borderRadius: 8, fontWeight: 700, fontSize: 14, textDecoration: "none",
+              boxShadow: "0 8px 28px rgba(230,46,4,0.38)",
+              transition: "transform 0.2s, box-shadow 0.2s",
+              display: "flex", alignItems: "center", gap: 8,
             }}
-              onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.boxShadow="0 16px 36px rgba(230,46,4,0.5)"; }}
-              onMouseLeave={e=>{ e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="0 8px 28px rgba(230,46,4,0.38)"; }}
+              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 16px 36px rgba(230,46,4,0.5)"; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "0 8px 28px rgba(230,46,4,0.38)"; }}
             >
               Explore Products
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
             </Link>
             <Link to="/contact" style={{
-              background:btnGlass, border:`1.5px solid ${btnGlassBd}`,
-              color:btnGlassClr, padding:"13px 24px",
-              borderRadius:8, fontWeight:600, fontSize:14, textDecoration:"none",
-              backdropFilter:"blur(12px)", transition:"background 0.2s, color 0.4s",
+              background: btnGlass, border: `1.5px solid ${btnGlassBd}`,
+              color: btnGlassClr, padding: "13px 24px",
+              borderRadius: 8, fontWeight: 600, fontSize: 14, textDecoration: "none",
+              backdropFilter: "blur(12px)", transition: "background 0.2s, color 0.4s",
             }}
-              onMouseEnter={e=>e.currentTarget.style.background=dark?"rgba(250,250,249,0.12)":"rgba(12,10,9,0.09)"}
-              onMouseLeave={e=>e.currentTarget.style.background=btnGlass}
+              onMouseEnter={e => e.currentTarget.style.background = dark ? "rgba(250,250,249,0.12)" : "rgba(12,10,9,0.09)"}
+              onMouseLeave={e => e.currentTarget.style.background = btnGlass}
             >Get a Quote →</Link>
           </div>
 
           {/* Progress indicator */}
-          <div className={entered ? "hs-t6" : ""} style={{
+          <div className={`${entered ? "hs-t6" : ""} hero-progress`} style={{
             opacity: entered ? undefined : 0,
-            marginTop:36, display:"flex", alignItems:"center", gap:12,
+            marginTop: 36, display: "flex", alignItems: "center", gap: 12,
           }}>
-            <div style={{ flex:1, height:2, borderRadius:2, background:dark?"rgba(255,255,255,0.1)":"rgba(0,0,0,0.1)", overflow:"hidden" }}>
+            <div style={{ flex: 1, height: 2, borderRadius: 2, background: dark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)", overflow: "hidden" }}>
               <div key={current} style={{
-                height:"100%", borderRadius:2, background:"#e62e04",
-                animation:"progressFill 5.5s linear both",
-              }}/>
+                height: "100%", borderRadius: 2, background: "#e62e04",
+                animation: "progressFill 5.5s linear both",
+              }} />
             </div>
-            <span style={{ fontSize:11, color:statLbl, fontWeight:600, letterSpacing:"1px", whiteSpace:"nowrap" }}>
-              {String(current+1).padStart(2,"0")} / {String(HERO_SLIDES.length).padStart(2,"0")}
+            <span style={{ fontSize: 11, color: statLbl, fontWeight: 600, letterSpacing: "1px", whiteSpace: "nowrap" }}>
+              {String(current + 1).padStart(2, "0")} / {String(HERO_SLIDES.length).padStart(2, "0")}
             </span>
           </div>
         </div>
 
-        {/* ═══ RIGHT: Diagonal card stack ═══ */}
-        <div style={{
-          flex:1, minWidth:"clamp(280px,45vw,560px)",
-          display:"flex", alignItems:"center", justifyContent:"center",
-          position:"relative", height:"clamp(400px,55vw,740px)",
-          perspective:"1200px",
+        {/* ═══ RIGHT: Horizontal Carousel ═══ */}
+        <div className="hero-right" style={{
+          flex: 1, minWidth: "clamp(280px,45vw,540px)",
+          display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+          position: "relative",
         }}>
-
-          {/* Background atmosphere behind card stack */}
+          {/* Carousel viewport */}
           <div style={{
-            position:"absolute", top:"50%", left:"50%",
-            transform:"translate(-50%,-50%)",
-            width:560, height:560, borderRadius:"50%",
-            background: dark
-              ? "radial-gradient(circle, rgba(230,46,4,0.22) 0%, rgba(180,30,0,0.08) 40%, transparent 65%)"
-              : "radial-gradient(circle, rgba(230,46,4,0.14) 0%, transparent 65%)",
-            pointerEvents:"none",
-            animation:"blobPulse 6s ease-in-out infinite",
-          }}/>
-          {/* Concentric rings */}
-          {[440,330,220].map((sz,i)=>(
-            <div key={sz} style={{
-              position:"absolute", top:"50%", left:"50%",
-              width:sz, height:sz, borderRadius:"50%",
-              border:`1px solid rgba(230,46,4,${dark?0.18-i*0.04:0.12-i*0.03})`,
-              transform:"translate(-50%,-50%)",
-              animation:`blobOrbit ${14+i*3}s ease-in-out ${i*2}s infinite`,
-              pointerEvents:"none",
-              boxShadow:`0 0 ${20+i*8}px rgba(230,46,4,${dark?0.12:0.07})`,
-            }}/>
-          ))}
-
-          {/* Card stack — increased to 460×620 */}
-          {HERO_SLIDES.map((slide, i) => {
-            const stackPos = ((i - current) % HERO_SLIDES.length + HERO_SLIDES.length) % HERO_SLIDES.length;
-            const isTop   = stackPos === 0;
-            const depth   = HERO_SLIDES.length - 1 - stackPos;
-            const offsetX = stackPos * -26;
-            const offsetY = stackPos *  22;
-            const rot     = stackPos * -3.5;
-            const scale   = 1 - stackPos * 0.055;
-            const zIndex  = depth + 1;
-            const isLeaving = isTop && swipeDir === "out";
-
-            return (
-              <div
-                key={i}
-                className={isLeaving ? "card-leaving" : isTop && !swipeDir ? "card-entering" : ""}
-                style={{
-                  "--base-rot": `${rot}deg`,
-                  position:"absolute",
-                  width:520, height:540,
-                  borderRadius:28,
-                  overflow:"hidden",
-                  zIndex,
-                  transform: `rotate(${rot}deg) translate(${offsetX}px,${offsetY}px) scale(${scale})`,
-                  boxShadow: isTop
-                    ? (dark
-                      ? "0 70px 140px rgba(0,0,0,0.9), 0 30px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08), 0 0 100px rgba(230,46,4,0.28)"
-                      : "0 70px 140px rgba(0,0,0,0.32), 0 30px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.06), 0 0 80px rgba(230,46,4,0.16)")
-                    : stackPos === 1
-                      ? (dark
-                        ? "0 36px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.05)"
-                        : "0 36px 80px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.05)")
-                      : (dark
-                        ? "0 18px 45px rgba(0,0,0,0.55)"
-                        : "0 18px 45px rgba(0,0,0,0.12)"),
-                  transition: isLeaving || (isTop && !swipeDir) ? "none" : "all 0.52s cubic-bezier(0.4,0,0.2,1)",
-                  cursor: isTop ? "pointer" : "default",
-                  background: cardShell,
-                  border:`1px solid ${cardBrd}`,
-                  backdropFilter:"blur(20px)",
-                }}
-                onClick={() => isTop && goTo((current + 1) % HERO_SLIDES.length)}
-              >
-                {/* Card image — taller at 390px */}
-                <div style={{ position:"relative", height:390, overflow:"hidden" }}>
-                  <img src={slide.img} alt={slide.title}
-                    style={{
-                      width:"100%", height:"100%", objectFit:"cover", display:"block",
-                      transform: isTop ? `scale(1.06) translate(${mousePos.x*-3}px,${mousePos.y*-3}px)` : "scale(1.06)",
-                      transition:"transform 0.6s ease",
-                    }}
-                  />
-                  <div style={{
-                    position:"absolute", inset:0,
-                    background:"linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.12) 55%, transparent 100%)",
-                  }}/>
-                  {/* Tag badge */}
-                  <div style={{
-                    position:"absolute", top:16, left:16,
-                    background:"#e62e04", color:"#fff",
-                    fontSize:9, fontWeight:800, letterSpacing:"2px",
-                    textTransform:"uppercase", padding:"5px 12px", borderRadius:6,
-                    boxShadow:"0 4px 14px rgba(230,46,4,0.6)",
-                  }}>{slide.tag}</div>
-                  {/* Title over image */}
-                  <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"0 20px 16px" }}>
-                    <h3 style={{
-                      color:"#fff", fontSize:24, fontWeight:800,
-                      fontFamily:"'Georgia',serif", marginBottom:4, letterSpacing:"-0.5px",
-                    }}>{slide.title}</h3>
+            width: "100%",
+            borderRadius: 24,
+            overflow: "hidden",
+            position: "relative",
+            boxShadow: dark
+              ? "0 40px 100px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.07)"
+              : "0 40px 100px rgba(0,0,0,0.22), 0 0 0 1px rgba(0,0,0,0.05)",
+            background: cardShell,
+            border: `1px solid ${cardBrd}`,
+            backdropFilter: "blur(20px)",
+          }}>
+            {/* Slides wrapper */}
+            <div style={{
+              display: "flex",
+              transform: `translateX(-${current * 100}%)`,
+              transition: swipeDir ? "none" : "transform 0.55s cubic-bezier(0.4,0,0.2,1)",
+              willChange: "transform",
+            }}>
+              {HERO_SLIDES.map((slide, i) => (
+                <div key={i} style={{ flexShrink: 0, width: "100%" }}>
+                  {/* Card image */}
+                  <div style={{ position: "relative", height: "clamp(220px,28vw,360px)", overflow: "hidden" }}>
+                    <img src={slide.img} alt={slide.title}
+                      style={{
+                        width: "100%", height: "100%", objectFit: "cover", display: "block",
+                        transform: i === current ? `scale(1.06) translate(${mousePos.x * -2}px,${mousePos.y * -2}px)` : "scale(1.06)",
+                        transition: "transform 0.6s ease",
+                      }}
+                    />
+                    <div style={{
+                      position: "absolute", inset: 0,
+                      background: "linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.10) 55%, transparent 100%)",
+                    }} />
+                    {/* Tag badge */}
+                    <div style={{
+                      position: "absolute", top: 14, left: 14,
+                      background: "#e62e04", color: "#fff",
+                      fontSize: 9, fontWeight: 800, letterSpacing: "2px",
+                      textTransform: "uppercase", padding: "5px 12px", borderRadius: 6,
+                      boxShadow: "0 4px 14px rgba(230,46,4,0.6)",
+                    }}>{slide.tag}</div>
+                    {/* Title over image */}
+                    <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "0 20px 14px" }}>
+                      <h3 style={{
+                        color: "#fff", fontSize: "clamp(18px,2.2vw,24px)", fontWeight: 800,
+                        fontFamily: "'Georgia',serif", marginBottom: 0, letterSpacing: "-0.5px",
+                      }}>{slide.title}</h3>
+                    </div>
                   </div>
-                </div>
-
-                {/* Card body */}
-                <div style={{ padding:"20px 24px 26px" }}>
-                  <p style={{
-                    color:cardSub, fontSize:14.5, lineHeight:1.7, marginBottom:20,
-                    transition:"color 0.4s",
-                  }}>{slide.subtitle}</p>
-
-                  <div style={{
-                    display:"flex", alignItems:"center", justifyContent:"space-between",
-                    marginBottom:16,
-                  }}>
-                    <Link to="/products" style={{
-                      background:"#e62e04", color:"#fff", padding:"9px 18px",
-                      borderRadius:8, fontWeight:700, fontSize:13,
-                      textDecoration:"none", transition:"background 0.2s",
-                      display:"flex", alignItems:"center", gap:6,
-                      boxShadow:"0 4px 14px rgba(230,46,4,0.4)",
-                    }}>
-                      Shop Now
-                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </Link>
-                    {isTop && (
-                      <div style={{ display:"flex", gap:5 }}>
-                        {HERO_SLIDES.map((_,j)=>(
-                          <button key={j} onClick={e=>{e.stopPropagation();goTo(j);}} style={{
-                            width: j===current ? 20 : 7, height:7, borderRadius:4,
-                            border:"none", padding:0, cursor:"pointer",
-                            background: j===current ? "#e62e04" : (dark?"rgba(255,255,255,0.22)":"rgba(0,0,0,0.18)"),
-                            transition:"all 0.3s ease",
-                          }}/>
+                  {/* Card body */}
+                  <div style={{ padding: "16px 20px 20px" }}>
+                    <p style={{
+                      color: cardSub, fontSize: 14, lineHeight: 1.65, marginBottom: 14,
+                      transition: "color 0.4s",
+                    }}>{slide.subtitle}</p>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                      <Link to="/products" style={{
+                        background: "#e62e04", color: "#fff", padding: "8px 16px",
+                        borderRadius: 8, fontWeight: 700, fontSize: 13,
+                        textDecoration: "none", transition: "background 0.2s",
+                        display: "flex", alignItems: "center", gap: 6,
+                        boxShadow: "0 4px 14px rgba(230,46,4,0.4)",
+                      }}>
+                        Shop Now
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                      </Link>
+                      {/* Dots */}
+                      <div style={{ display: "flex", gap: 5 }}>
+                        {HERO_SLIDES.map((_, j) => (
+                          <button key={j} onClick={e => { e.stopPropagation(); goTo(j); }} style={{
+                            width: j === current ? 20 : 7, height: 7, borderRadius: 4,
+                            border: "none", padding: 0, cursor: "pointer",
+                            background: j === current ? "#e62e04" : (dark ? "rgba(255,255,255,0.22)" : "rgba(0,0,0,0.18)"),
+                            transition: "all 0.3s ease",
+                          }} />
                         ))}
                       </div>
-                    )}
-                  </div>
-
-                  {/* Extra info row at bottom of card */}
-                  <div style={{
-                    borderTop:`1px solid ${cardBrd}`, paddingTop:14,
-                    display:"flex", gap:16, alignItems:"center",
-                  }}>
-                    <span style={{ fontSize:11, color:cardSub, fontWeight:600, letterSpacing:"0.5px" }}>✅ ISO Certified</span>
-                    <span style={{ fontSize:11, color:cardSub, fontWeight:600, letterSpacing:"0.5px" }}>🚚 Worldwide Delivery</span>
+                    </div>
                   </div>
                 </div>
-
-                {/* Shimmer on top card */}
-                {isTop && (
-                  <div style={{
-                    position:"absolute", inset:0, overflow:"hidden",
-                    pointerEvents:"none", borderRadius:24,
-                  }}>
-                    <div style={{
-                      position:"absolute", top:0, bottom:0, width:"40%",
-                      background:"linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)",
-                      animation:"scanLine 6s ease-in-out 1s infinite",
-                    }}/>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-
-          {/* ISO cert floating badge */}
-          <div style={{
-            position:"absolute", bottom:30, left:-24,
-            zIndex:20,
-            animation: entered ? "badgeFloat 4s ease-in-out 1.2s infinite" : "none",
-            opacity: entered ? 1 : 0,
-            transition:"opacity 0.6s ease 1.4s",
-          }}>
-            <div style={{
-              background: dark ? "rgba(20,20,22,0.94)" : "rgba(255,255,255,0.94)",
-              border:`1px solid ${cardBrd}`, backdropFilter:"blur(20px)",
-              borderRadius:14, padding:"12px 16px",
-              display:"flex", alignItems:"center", gap:10,
-              boxShadow: dark ? "0 16px 40px rgba(0,0,0,0.5)" : "0 16px 40px rgba(0,0,0,0.12)",
-              transition:"background 0.4s",
-            }}>
-              <span style={{ fontSize:22 }}>✅</span>
-              <div>
-                <div style={{ color:cardTxt, fontSize:12, fontWeight:700, transition:"color 0.4s" }}>ISO &amp; ISI Certified</div>
-                <div style={{ color:cardSub, fontSize:10, transition:"color 0.4s" }}>International standards</div>
-              </div>
+              ))}
             </div>
-          </div>
 
-          {/* Best price badge */}
-          <div style={{
-            position:"absolute", top:28, right:-14, zIndex:20,
-            animation: entered ? "badgeFloat 3.5s ease-in-out 0.8s infinite" : "none",
-            opacity: entered ? 1 : 0,
-            transition:"opacity 0.6s ease 1.6s",
-          }}>
-            <div style={{
-              background:"linear-gradient(135deg,#e62e04,#c42500)",
-              color:"#fff", borderRadius:14, padding:"11px 16px",
-              fontSize:11, fontWeight:800, letterSpacing:"0.5px",
-              boxShadow:"0 10px 28px rgba(230,46,4,0.55)",
-              whiteSpace:"nowrap",
-            }}>🏆 Best Price Guaranteed</div>
+            {/* Left / Right nav arrows */}
+            <button onClick={() => goTo((current - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)}
+              style={{
+                position: "absolute", left: 10, top: "40%", transform: "translateY(-50%)",
+                width: 34, height: 34, borderRadius: "50%",
+                background: dark ? "rgba(30,30,32,0.85)" : "rgba(255,255,255,0.85)",
+                border: `1px solid ${cardBrd}`, backdropFilter: "blur(8px)",
+                cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+                zIndex: 10, boxShadow: "0 4px 16px rgba(0,0,0,0.18)", transition: "background 0.2s",
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = "#e62e04"}
+              onMouseLeave={e => e.currentTarget.style.background = dark ? "rgba(30,30,32,0.85)" : "rgba(255,255,255,0.85)"}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={dark ? "#fff" : "#333"} strokeWidth="2.5"><path d="M15 18l-6-6 6-6" /></svg>
+            </button>
+            <button onClick={() => goTo((current + 1) % HERO_SLIDES.length)}
+              style={{
+                position: "absolute", right: 10, top: "40%", transform: "translateY(-50%)",
+                width: 34, height: 34, borderRadius: "50%",
+                background: dark ? "rgba(30,30,32,0.85)" : "rgba(255,255,255,0.85)",
+                border: `1px solid ${cardBrd}`, backdropFilter: "blur(8px)",
+                cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+                zIndex: 10, boxShadow: "0 4px 16px rgba(0,0,0,0.18)", transition: "background 0.2s",
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = "#e62e04"}
+              onMouseLeave={e => e.currentTarget.style.background = dark ? "rgba(30,30,32,0.85)" : "rgba(255,255,255,0.85)"}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={dark ? "#fff" : "#333"} strokeWidth="2.5"><path d="M9 18l6-6-6-6" /></svg>
+            </button>
           </div>
         </div>
       </div>
 
       {/* Scroll hint */}
       <div style={{
-        position:"absolute", bottom:28, left:"50%", transform:"translateX(-50%)",
-        zIndex:30, color:scrollClr, fontSize:11, letterSpacing:"1.5px",
-        display:"flex", flexDirection:"column", alignItems:"center", gap:6,
-        pointerEvents:"none",
-        opacity: entered ? 1 : 0, transition:"opacity 0.6s ease 1.2s",
-        fontFamily:"'Georgia','Times New Roman',serif",
+        position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)",
+        zIndex: 30, color: scrollClr, fontSize: 11, letterSpacing: "1.5px",
+        display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
+        pointerEvents: "none",
+        opacity: entered ? 1 : 0, transition: "opacity 0.6s ease 1.2s",
+        fontFamily: "'Georgia','Times New Roman',serif",
       }}>
         <span>Here's how we do it</span>
-        <svg style={{ animation:"scrollBounce 1.8s ease-in-out infinite" }} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+        <svg style={{ animation: "scrollBounce 1.8s ease-in-out infinite" }} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <line x1="12" y1="5" x2="12" y2="19" /><polyline points="19 12 12 19 5 12" />
         </svg>
       </div>
     </section>
@@ -1173,29 +1218,29 @@ function WhyUs() {
   const hoverShadow = dark ? "0 12px 32px rgba(230,46,4,0.2)" : "0 12px 32px rgba(230,46,4,0.15)";
 
   return (
-    <section style={{ padding: "96px 0", background: bg, transition: "background 0.4s" }}>
+    <section className="why-us-section" style={{ padding: "72px 0", background: "transparent", transition: "background 0.4s" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(16px,4vw,48px)" }}>
-        <div style={{ textAlign: "center", marginBottom: 64 }}>
+        <div className="why-us-header" style={{ textAlign: "center", marginBottom: 48 }}>
           <p style={{ color: "#e62e04", fontWeight: 700, letterSpacing: "2px", fontSize: 13, textTransform: "uppercase", marginBottom: 12 }}>Our Promise</p>
           <h2 style={{ fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 800, color: titleColor, fontFamily: "'Georgia', serif", marginBottom: 16, transition: "color 0.4s" }}>Why YourBuildMart?</h2>
           <p style={{ color: descColor, fontSize: 17, maxWidth: 580, margin: "0 auto", lineHeight: 1.7, transition: "color 0.4s" }}>
             Committed to providing the best building materials and home improvement products, no matter where you are in the world.
           </p>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 24, className: undefined }}>
+        <div className="why-us-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 16 }}>
           {WHY_US.map((item, i) => (
-            <div key={i} style={{ background: cardBg, borderRadius: 12, overflow: "hidden", boxShadow: cardShadow, transition: "transform 0.25s, box-shadow 0.25s, background 0.4s", cursor: "pointer" }}
+            <div key={i} className="ray-card" style={{ background: cardBg, borderRadius: 12, overflow: "hidden", boxShadow: cardShadow, transition: "transform 0.25s, box-shadow 0.25s, background 0.4s", cursor: "pointer" }}
               onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-6px)"; e.currentTarget.style.boxShadow = hoverShadow; }}
               onMouseLeave={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = cardShadow; }}
             >
-              <div style={{ height: 160, overflow: "hidden", position: "relative" }}>
+              <div className="why-us-card-img" style={{ height: "clamp(100px,14vw,160px)", overflow: "hidden", position: "relative" }}>
                 <img src={item.img} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.6), transparent)" }} />
-                <div style={{ position: "absolute", bottom: 12, left: 12, background: "#e62e04", borderRadius: 6, width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>{item.icon}</div>
+                <div style={{ position: "absolute", bottom: 10, left: 10, background: "#e62e04", borderRadius: 6, width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>{item.icon}</div>
               </div>
-              <div style={{ padding: "20px 20px 24px" }}>
-                <h3 style={{ fontSize: 16, fontWeight: 700, color: titleColor, marginBottom: 8, transition: "color 0.4s" }}>{item.title}</h3>
-                <p style={{ fontSize: 14, color: descColor, lineHeight: 1.65, transition: "color 0.4s" }}>{item.desc}</p>
+              <div className="why-us-card-body" style={{ padding: "14px 14px 18px" }}>
+                <h3 className="why-us-card-title" style={{ fontSize: "clamp(13px,1.5vw,16px)", fontWeight: 700, color: titleColor, marginBottom: 6, transition: "color 0.4s" }}>{item.title}</h3>
+                <p className="why-us-card-desc" style={{ fontSize: "clamp(12px,1.3vw,14px)", color: descColor, lineHeight: 1.6, transition: "color 0.4s" }}>{item.desc}</p>
               </div>
             </div>
           ))}
@@ -1230,21 +1275,12 @@ function CatCard({ cat, index, isActive, onCardClick, didDragRef, dark }) {
   };
 
   const handleClick = (e) => {
-    if (didDragRef.current) { e.preventDefault(); return; }
+    if (didDragRef.current) {
+      e.preventDefault();
+      return;
+    }
     onCardClick(index);
   };
-
-  const nightShadow = isActive
-    ? (hovered ? "0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.15)" : "0 16px 48px rgba(0,0,0,0.38), 0 0 0 1px rgba(255,255,255,0.05)")
-    : "0 8px 28px rgba(0,0,0,0.22)";
-  const dayShadow = isActive
-    ? (hovered ? "0 28px 72px rgba(0,0,0,0.22), 0 0 0 1.5px rgba(230,46,4,0.18)" : "0 12px 40px rgba(0,0,0,0.13)")
-    : "0 4px 18px rgba(0,0,0,0.08)";
-
-  const shadow = dark ? nightShadow : dayShadow;
-  const scale = isActive ? (hovered ? 1.035 : 1) : 0.91;
-  const opacity = isActive ? 1 : (dark ? 0.5 : 0.62);
-  const blur = isActive ? 0 : (dark ? 1.5 : 0.5);
 
   return (
     <a
@@ -1254,155 +1290,160 @@ function CatCard({ cat, index, isActive, onCardClick, didDragRef, dark }) {
       rel="noopener noreferrer"
       onClick={handleClick}
       onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => { setHovered(false); setMouseLocal({ x: 50, y: 50 }); }}
+      onMouseLeave={() => setHovered(false)}
       onMouseMove={handleMouseMove}
       draggable={false}
       style={{
         display: "block",
-        textDecoration: "none",
         flexShrink: 0,
         width: "clamp(240px, 28vw, 340px)",
-        height: "clamp(320px, 42vw, 480px)",
+        height: "clamp(300px, 38vw, 420px)",
         borderRadius: 22,
         overflow: "hidden",
         position: "relative",
-        transition: "transform 0.55s cubic-bezier(0.34,1.56,0.64,1), opacity 0.45s ease, filter 0.45s ease, box-shadow 0.45s ease",
-        transform: `scale(${scale}) translateY(${hovered && isActive ? -10 : 0}px)`,
-        opacity,
-        filter: `blur(${blur}px)`,
-        boxShadow: shadow,
         cursor: "pointer",
+        textDecoration: "none",
+        transform: isActive ? (hovered ? "scale(1.03)" : "scale(1)") : "scale(0.92)",
+        opacity: isActive ? 1 : dark ? 0.55 : 0.65,
+        transition: "all 0.4s ease",
+        boxShadow: hovered
+          ? "0 25px 60px rgba(0,0,0,0.35)"
+          : "0 10px 30px rgba(0,0,0,0.18)",
       }}
     >
-      <div style={{
-        position: "absolute", inset: 0,
-        backgroundImage: `url(${cat.img})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        transition: "transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-        transform: hovered ? "scale(1.12)" : "scale(1.0)",
-      }} />
-      <div style={{
-        position: "absolute", inset: 0,
-        background: dark
-          ? "linear-gradient(170deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.82) 100%)"
-          : "linear-gradient(170deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.22) 40%, rgba(0,0,0,0.72) 100%)",
-        transition: "background 0.4s",
-      }} />
-      <div style={{
-        position: "absolute", inset: 0,
-        background: hovered
-          ? `radial-gradient(circle at ${mouseLocal.x}% ${mouseLocal.y}%, rgba(230,46,4,0.28) 0%, transparent 60%)`
-          : "transparent",
-        transition: "background 0.2s",
-        mixBlendMode: "screen",
-      }} />
-      <div style={{
-        position: "absolute",
-        bottom: 0, left: 0, right: 0,
-        height: hovered ? "52%" : "44%",
-        background: "linear-gradient(to top, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.6) 55%, transparent 100%)",
-        transition: "height 0.45s cubic-bezier(0.25,0.46,0.45,0.94)",
-      }} />
-      <div style={{
-        position: "absolute", top: 18, right: 18,
-        background: dark ? "rgba(255,255,255,0.10)" : "rgba(255,255,255,0.22)",
-        backdropFilter: "blur(12px)",
-        border: dark ? "1px solid rgba(255,255,255,0.18)" : "1px solid rgba(255,255,255,0.4)",
-        borderRadius: 100,
-        padding: "5px 13px",
-        fontSize: 11,
-        fontWeight: 700,
-        color: "rgba(255,255,255,0.85)",
-        letterSpacing: "2px",
-        fontFamily: "monospace",
-        opacity: isActive ? 1 : 0,
-        transition: "opacity 0.3s",
-      }}>
+      {/* IMAGE */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: `url(${cat.img})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          transform: hovered ? "scale(1.1)" : "scale(1)",
+          transition: "transform 0.6s ease",
+        }}
+      />
+
+      {/* OVERLAY */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.2), transparent)",
+        }}
+      />
+
+      {/* INDEX */}
+      <div
+        style={{
+          position: "absolute",
+          top: 14,
+          right: 14,
+          fontSize: 11,
+          fontWeight: 700,
+          color: "#fff",
+          opacity: isActive ? 1 : 0,
+        }}
+      >
         {String(index + 1).padStart(2, "0")}
       </div>
-      <div style={{
-        position: "absolute",
-        bottom: hovered ? 80 : 72,
-        left: 24,
-        width: hovered ? 42 : 28,
-        height: 2,
-        background: "linear-gradient(90deg, #e62e04, #ff7f5e)",
-        borderRadius: 2,
-        transition: "all 0.5s cubic-bezier(0.34,1.56,0.64,1)",
-        boxShadow: "0 0 12px rgba(230,46,4,0.8)",
-      }} />
-      <div style={{ position: "absolute", bottom: 24, left: 24, right: 24 }}>
-        <p style={{
-          margin: "0 0 6px",
-          fontSize: "clamp(15px, 1.8vw, 20px)",
-          fontWeight: 800,
-          color: "#ffffff",
-          lineHeight: 1.2,
-          fontFamily: "'Georgia', serif",
-          letterSpacing: "-0.2px",
-          textShadow: "0 2px 16px rgba(0,0,0,0.6)",
-          transition: "transform 0.4s cubic-bezier(0.34,1.56,0.64,1)",
-          transform: hovered ? "translateY(-4px)" : "translateY(0)",
-        }}>
+
+      {/* CONTENT */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 18,
+          left: 18,
+          right: 18,
+        }}
+      >
+        <p
+          style={{
+            margin: 0,
+            fontSize: 18,
+            fontWeight: 800,
+            color: "#fff",
+          }}
+        >
           {cat.name}
         </p>
-        <div style={{
-          display: "flex", alignItems: "center", gap: 7,
-          opacity: hovered ? 1 : 0.65,
-          transform: hovered ? "translateY(0)" : "translateY(5px)",
-          transition: "all 0.4s ease 0.05s",
-        }}>
-          <span style={{
-            fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.75)",
-            letterSpacing: "2.5px", textTransform: "uppercase", fontFamily: "monospace",
-          }}>Explore Products</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-            stroke="rgba(255,255,255,0.7)" strokeWidth="2.5"
-            style={{ transform: hovered ? "translateX(4px)" : "translateX(0)", transition: "transform 0.35s ease" }}
+
+        <div
+          style={{
+            marginTop: 8,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            opacity: hovered ? 1 : 0.7,
+            transition: "all 0.3s ease",
+          }}
+        >
+          <span
+            style={{
+              fontSize: 11,
+              letterSpacing: "2px",
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,0.75)",
+            }}
           >
-            <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+            Explore Products
+          </span>
+
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#fff"
+            strokeWidth="2.5"
+            style={{
+              transform: hovered ? "translateX(6px)" : "translateX(0)",
+              transition: "transform 0.3s ease",
+            }}
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
         </div>
       </div>
-      <div style={{
-        position: "absolute", inset: 0, borderRadius: 22,
-        border: hovered ? "1px solid rgba(255,255,255,0.20)" : "1px solid rgba(255,255,255,0.04)",
-        transition: "border-color 0.4s", pointerEvents: "none",
-      }} />
     </a>
   );
 }
 
 function ArrowButton({ direction, disabled, onClick, arrowBg, arrowBorder, arrowIcon, dark }) {
   const [hovered, setHovered] = useState(false);
+
   return (
     <button
       onClick={onClick}
       disabled={disabled}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      aria-label={direction === "left" ? "Previous" : "Next"}
       style={{
-        width: 52, height: 52, borderRadius: "50%",
+        width: 52,
+        height: 52,
+        borderRadius: "50%",
         border: `1px solid ${arrowBorder}`,
-        background: hovered && !disabled ? "rgba(230,46,4,0.88)" : arrowBg,
-        backdropFilter: "blur(16px)",
+        background: hovered && !disabled ? "#e62e04" : arrowBg,
         cursor: disabled ? "not-allowed" : "pointer",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        transition: "all 0.35s cubic-bezier(0.34,1.56,0.64,1)",
-        transform: hovered && !disabled ? "scale(1.12)" : "scale(1)",
-        boxShadow: hovered && !disabled
-          ? "0 0 0 1px rgba(230,46,4,0.5), 0 8px 28px rgba(230,46,4,0.35)"
-          : (dark ? "0 4px 20px rgba(0,0,0,0.4)" : "0 2px 12px rgba(0,0,0,0.1)"),
-        opacity: disabled ? 0.32 : 1,
-        flexShrink: 0, outline: "none",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        transition: "all 0.3s ease",
+        transform: hovered && !disabled ? "scale(1.1)" : "scale(1)",
+        opacity: disabled ? 0.3 : 1,
       }}
     >
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-        stroke={hovered && !disabled ? "#fff" : arrowIcon}
-        strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"
-        style={{ transform: direction === "left" ? "none" : "rotate(180deg)" }}
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={hovered && !disabled ? "#e62e04" : arrowIcon}
+        strokeWidth="2.2"
+        style={{
+          transform: direction === "left" ? "none" : "rotate(180deg)",
+        }}
       >
         <path d="M19 12H5M12 5l-7 7 7 7" />
       </svg>
@@ -1414,7 +1455,7 @@ function Categories() {
   const { dark } = useTheme();
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
-  const inView = useInView(sectionRef);
+
   const [activeIdx, setActiveIdx] = useState(1);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -1422,193 +1463,174 @@ function Categories() {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeftStart = useRef(0);
-  const velocity = useRef(0);
-  const lastX = useRef(0);
   const didDrag = useRef(false);
-  const rafId = useRef(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const onMove = (e) => {
-      const rect = el.getBoundingClientRect();
-      setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-    };
-    el.addEventListener("mousemove", onMove);
-    return () => el.removeEventListener("mousemove", onMove);
-  }, []);
-
-  const sectionBg = dark ? "#080808" : "#fff";
-  const headingColor = dark ? "#ffffff" : "#111";
-  const subColor = dark ? "rgba(255,255,255,0.42)" : "#666";
-  const eyebrowColor = "#e62e04";
-  const arrowBg = dark ? "rgba(18,18,18,0.75)" : "rgba(255,255,255,0.9)";
-  const arrowBorder = dark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)";
-  const arrowIcon = dark ? "#fff" : "#333";
-  const fadeEdgeColor = dark ? "#080808" : "#fff";
-  const dotInactive = dark ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.15)";
-  const viewAllColor = dark ? "rgba(255,255,255,0.5)" : "#888";
 
   const scrollTo = useCallback((dir) => {
     const el = trackRef.current;
     if (!el) return;
-    el.scrollBy({ left: dir === "left" ? -364 : 364, behavior: "smooth" });
+    setActiveIdx(prev => {
+      const newIdx = dir === "left"
+        ? Math.max(0, prev - 1)
+        : Math.min(CATEGORIES.length - 1, prev + 1);
+      const card = el.children[newIdx];
+      if (card) {
+        el.scrollTo({
+          left: card.offsetLeft - el.clientWidth / 2 + card.offsetWidth / 2,
+          behavior: "smooth",
+        });
+      }
+      return newIdx;
+    });
   }, []);
 
   const onScroll = useCallback(() => {
     const el = trackRef.current;
     if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 10);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
+
     const center = el.scrollLeft + el.clientWidth / 2;
-    let closest = 0, minDist = Infinity;
+
+    let closest = 0;
+    let minDist = Infinity;
+
     Array.from(el.children).forEach((card, i) => {
-      const dist = Math.abs((card.offsetLeft + card.offsetWidth / 2) - center);
-      if (dist < minDist) { minDist = dist; closest = i; }
+      const dist = Math.abs(
+        card.offsetLeft + card.offsetWidth / 2 - center
+      );
+      if (dist < minDist) {
+        minDist = dist;
+        closest = i;
+      }
     });
+
     setActiveIdx(closest);
+    setCanScrollLeft(closest > 0);
+    setCanScrollRight(closest < CATEGORIES.length - 1);
   }, []);
 
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
-    el.addEventListener("scroll", onScroll, { passive: true });
+
+    el.addEventListener("scroll", onScroll);
     onScroll();
+
     return () => el.removeEventListener("scroll", onScroll);
   }, [onScroll]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      const el = trackRef.current;
-      if (!el || !el.children[1]) return;
-      const card = el.children[1];
-      el.scrollLeft = card.offsetLeft + card.offsetWidth / 2 - el.clientWidth / 2;
-    }, 80);
-  }, []);
-
-  const scrollToCard = useCallback((idx) => {
+  const scrollToCard = (idx) => {
     const el = trackRef.current;
     if (!el || !el.children[idx]) return;
+
     const card = el.children[idx];
-    el.scrollTo({ left: card.offsetLeft + card.offsetWidth / 2 - el.clientWidth / 2, behavior: "smooth" });
+    el.scrollTo({
+      left: card.offsetLeft - el.clientWidth / 2 + card.offsetWidth / 2,
+      behavior: "smooth",
+    });
+
     setActiveIdx(idx);
-  }, []);
-
-  const onMouseDown = (e) => {
-    isDragging.current = true;
-    didDrag.current = false;
-    startX.current = e.pageX - trackRef.current.offsetLeft;
-    scrollLeftStart.current = trackRef.current.scrollLeft;
-    lastX.current = e.pageX;
-    velocity.current = 0;
-    if (rafId.current) cancelAnimationFrame(rafId.current);
-    trackRef.current.style.cursor = "grabbing";
-  };
-
-  const onMouseMove = (e) => {
-    if (!isDragging.current) return;
-    e.preventDefault();
-    const x = e.pageX - trackRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1.2;
-    velocity.current = e.pageX - lastX.current;
-    lastX.current = e.pageX;
-    if (Math.abs(walk) > 4) didDrag.current = true;
-    trackRef.current.scrollLeft = scrollLeftStart.current - walk;
-  };
-
-  const stopDrag = () => {
-    if (!isDragging.current) return;
-    isDragging.current = false;
-    if (trackRef.current) trackRef.current.style.cursor = "grab";
-    const applyInertia = () => {
-      if (Math.abs(velocity.current) < 0.5) return;
-      trackRef.current.scrollLeft -= velocity.current * 0.85;
-      velocity.current *= 0.88;
-      rafId.current = requestAnimationFrame(applyInertia);
-    };
-    applyInertia();
   };
 
   return (
-    <section ref={sectionRef} style={{ position: "relative", padding: "110px 0 120px", background: sectionBg, overflow: "hidden", transition: "background 0.4s" }}>
-      {dark && (
-        <>
-          <div style={{ position: "absolute", left: "-8%", top: "10%", width: 480, height: 480, borderRadius: "50%", background: "rgba(230,46,4,0.18)", filter: "blur(110px)", opacity: 0.9, animation: "floatBlob 9s ease-in-out infinite alternate", pointerEvents: "none", zIndex: 0 }} />
-          <div style={{ position: "absolute", left: "65%", top: "-15%", width: 520, height: 520, borderRadius: "50%", background: "rgba(180,30,0,0.10)", filter: "blur(130px)", opacity: 0.7, animation: "floatBlob 13s ease-in-out infinite alternate", pointerEvents: "none", zIndex: 0 }} />
-          <div style={{ position: "absolute", left: "40%", top: "55%", width: 400, height: 400, borderRadius: "50%", background: "rgba(230,46,4,0.08)", filter: "blur(100px)", opacity: 0.8, animation: "floatBlob 11s ease-in-out infinite alternate", pointerEvents: "none", zIndex: 0 }} />
-        </>
-      )}
-      {!dark && (
-        <div style={{ position: "absolute", width: 600, height: 300, borderRadius: "50%", left: "-5%", top: "60%", background: "rgba(230,46,4,0.04)", filter: "blur(80px)", pointerEvents: "none", zIndex: 0 }} />
-      )}
-      <div style={{ position: "absolute", width: 700, height: 700, borderRadius: "50%", background: "radial-gradient(circle, rgba(230,46,4,0.09) 0%, transparent 65%)", left: mousePos.x - 350, top: mousePos.y - 350, pointerEvents: "none", transition: "left 0.6s ease, top 0.6s ease", zIndex: 0 }} />
-      {dark && (
-        <div style={{ position: "absolute", inset: 0, zIndex: 0, opacity: 0.045, backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`, backgroundSize: "200px 200px", pointerEvents: "none" }} />
-      )}
-
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(24px, 5vw, 64px)", position: "relative", zIndex: 2, marginBottom: 60 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 24 }}>
-          <div style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(32px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}>
+    <section
+      ref={sectionRef}
+      style={{
+        position: "relative",
+        padding: "110px 0 120px",
+        overflow: "hidden",
+        background: "transparent",
+      }}
+    >
+      {/* ================= ORIGINAL HEADER (UNCHANGED) ================= */}
+      <div
+        style={{
+          maxWidth: 1280,
+          margin: "0 auto",
+          padding: "0 clamp(24px, 5vw, 64px)",
+          marginBottom: 60,
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+          <div>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18 }}>
-              <div style={{ width: 40, height: 1.5, background: "linear-gradient(90deg, #e62e04, #ff7f5e)", borderRadius: 2, boxShadow: "0 0 10px rgba(230,46,4,0.7)" }} />
-              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: eyebrowColor, fontFamily: "monospace" }}>Product Range</span>
+              <div style={{ width: 40, height: 1.5, background: "linear-gradient(90deg,#e62e04,#ff7f5e)" }} />
+              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "3.5px", color: "#e62e04" }}>
+                Product Range
+              </span>
             </div>
-            <h2 style={{ fontSize: "clamp(30px, 4.5vw, 54px)", fontWeight: 900, color: headingColor, lineHeight: 1.1, margin: 0, letterSpacing: "-0.5px", fontFamily: "'Georgia', serif", transition: "color 0.4s" }}>
+
+            <h2 style={{ fontSize: 48, fontWeight: 900, color: dark ? "#fff" : "#111" }}>
               Shop Our Bestselling<br />
-              <span style={{ background: "linear-gradient(135deg, #e62e04 0%, #ff6b3d 60%, #ffaa88 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Product Categories</span>
+              <span style={{ color: "#e62e04" }}>Product Categories</span>
             </h2>
-            <p style={{ fontSize: 16, color: subColor, marginTop: 16, fontWeight: 400, letterSpacing: "0.2px", maxWidth: 420, lineHeight: 1.65, transition: "color 0.4s" }}>
-              From structural steel to precision valves — everything your project demands, in one place.
+
+            <p style={{ color: dark ? "rgba(255,255,255,0.5)" : "#666" }}>
+              From structural steel to precision valves — everything your project demands.
             </p>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 20, opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(24px)", transition: "opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s" }}>
-            <div style={{ display: "flex", gap: 12 }}>
-              {[{ dir: "left", dis: !canScrollLeft }, { dir: "right", dis: !canScrollRight }].map(({ dir, dis }) => (
-                <ArrowButton key={dir} direction={dir} disabled={dis} onClick={() => scrollTo(dir)} arrowBg={arrowBg} arrowBorder={arrowBorder} arrowIcon={arrowIcon} dark={dark} />
-              ))}
-            </div>
-            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-              {CATEGORIES.map((_, i) => (
-                <button key={i} onClick={() => scrollToCard(i)} aria-label={`Go to ${CATEGORIES[i].name}`} style={{
-                  width: i === activeIdx ? 28 : 7, height: 7, borderRadius: 4, border: "none", cursor: "pointer", padding: 0,
-                  background: i === activeIdx ? "linear-gradient(90deg, #e62e04, #ff6b3d)" : dotInactive,
-                  transition: "all 0.4s cubic-bezier(0.34,1.56,0.64,1)",
-                  boxShadow: i === activeIdx ? "0 0 10px rgba(230,46,4,0.6)" : "none",
-                  animation: i === activeIdx ? "pulseGlow 2s ease-in-out infinite" : "none",
-                }} />
-              ))}
-            </div>
-            <Link to="/products" style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", color: viewAllColor, textDecoration: "none", transition: "color 0.25s" }}
-              onMouseEnter={e => e.currentTarget.style.color = "#e62e04"}
-              onMouseLeave={e => e.currentTarget.style.color = viewAllColor}
-            >
-              View All Products
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-            </Link>
+        </div>
+      </div>
+
+      {/* ================= TRACK ================= */}
+      <div
+        ref={trackRef}
+        className="cat-track"
+        style={{
+          display: "flex",
+          gap: 24,
+          overflowX: "auto",
+          padding: "40px 120px 6px",
+          scrollSnapType: "x mandatory",
+          cursor: "grab",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+        }}
+      >
+        {CATEGORIES.map((cat, i) => (
+          <div key={i} style={{ scrollSnapAlign: "center" }}>
+            <CatCard
+              cat={cat}
+              index={i}
+              isActive={i === activeIdx}
+              onCardClick={scrollToCard}
+              didDragRef={didDrag}
+              dark={dark}
+            />
           </div>
-        </div>
+        ))}
       </div>
 
-      <div style={{ position: "relative", zIndex: 2 }}>
-        <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "clamp(40px, 5vw, 80px)", background: `linear-gradient(to right, ${fadeEdgeColor} 0%, transparent 100%)`, zIndex: 3, pointerEvents: "none", transition: "background 0.4s" }} />
-        <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: "clamp(40px, 5vw, 80px)", background: `linear-gradient(to left, ${fadeEdgeColor} 0%, transparent 100%)`, zIndex: 3, pointerEvents: "none", transition: "background 0.4s" }} />
-        <div ref={trackRef} className="cat-track" onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={stopDrag} onMouseLeave={stopDrag}
-          style={{ display: "flex", gap: 24, overflowX: "auto", overflowY: "hidden", paddingLeft: "clamp(24px, 8vw, 160px)", paddingRight: "clamp(24px, 8vw, 160px)", paddingBottom: 20, paddingTop: 12, scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", cursor: "grab" }}
-        >
-          {CATEGORIES.map((cat, i) => (
-            <div key={i} style={{ scrollSnapAlign: "center", flexShrink: 0, opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(50px)", transition: `opacity 0.7s ease ${i * 90 + 100}ms, transform 0.7s ease ${i * 90 + 100}ms` }}>
-              <CatCard cat={cat} index={i} isActive={i === activeIdx} onCardClick={scrollToCard} didDragRef={didDrag} dark={dark} />
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* ================= ARROWS (NO GAP + ORANGE) ================= */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: 14,
+          marginTop: 2, // 🔥 tight spacing
+        }}
+      >
+        <ArrowButton
+          direction="left"
+          disabled={!canScrollLeft}
+          onClick={() => scrollTo("left")}
+          arrowBg={dark ? "#111" : "#eee"}
+          arrowBorder="rgba(230,46,4,0.4)"
+          arrowIcon="#e62e04"
+          dark={dark}
+        />
 
-      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 1, background: dark ? "linear-gradient(90deg, transparent 0%, rgba(230,46,4,0.3) 30%, rgba(230,46,4,0.5) 50%, rgba(230,46,4,0.3) 70%, transparent 100%)" : "linear-gradient(90deg, transparent 0%, rgba(230,46,4,0.15) 30%, rgba(230,46,4,0.3) 50%, rgba(230,46,4,0.15) 70%, transparent 100%)", zIndex: 2, transition: "background 0.4s" }} />
+        <ArrowButton
+          direction="right"
+          disabled={!canScrollRight}
+          onClick={() => scrollTo("right")}
+          arrowBg={dark ? "#111" : "#eee"}
+          arrowBorder="rgba(230,46,4,0.4)"
+          arrowIcon="#e62e04"
+          dark={dark}
+        />
+      </div>
     </section>
   );
 }
-
 // ─── STATS ────────────────────────────────────────────────────────────────────
 // Individual animated stat card
 function StatCard({ stat, dark, globalTrigger }) {
@@ -1630,16 +1652,17 @@ function StatCard({ stat, dark, globalTrigger }) {
 
   // Theme colours
   const numberColor = dark ? "#e62e04" : "#e62e04";
-  const labelColor  = dark ? "rgba(255,255,255,0.65)" : "rgba(30,30,30,0.7)";
-  const cardBg      = dark
+  const labelColor = dark ? "rgba(255,255,255,0.65)" : "rgba(30,30,30,0.7)";
+  const cardBg = dark
     ? "linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))"
     : "linear-gradient(135deg,rgba(230,46,4,0.06),rgba(230,46,4,0.02))";
   const borderColor = dark ? "rgba(255,255,255,0.08)" : "rgba(230,46,4,0.15)";
-  const glowColor   = dark ? "rgba(230,46,4,0.25)" : "rgba(230,46,4,0.12)";
+  const glowColor = dark ? "rgba(230,46,4,0.25)" : "rgba(230,46,4,0.12)";
 
   return (
     <div
       ref={cardRef}
+      className="ray-card stat-card"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -1668,7 +1691,7 @@ function StatCard({ stat, dark, globalTrigger }) {
         transition: "opacity 0.4s",
       }} />
 
-      <div style={{
+      <div className="stat-number" style={{
         fontSize: "clamp(40px, 5vw, 60px)",
         fontWeight: 900,
         color: numberColor,
@@ -1682,7 +1705,7 @@ function StatCard({ stat, dark, globalTrigger }) {
         {count}{stat.suffix}
       </div>
 
-      <p style={{
+      <p className="stat-label" style={{
         color: labelColor,
         fontSize: 13,
         fontWeight: 700,
@@ -1715,13 +1738,14 @@ function Stats() {
 
   const topBarBg = "linear-gradient(90deg, #e62e04, #ff6b3d, #e62e04)";
   const headingColor = dark ? "#fff" : "#111";
-  const subColor     = dark ? "rgba(255,255,255,0.45)" : "rgba(30,30,30,0.55)";
+  const subColor = dark ? "rgba(255,255,255,0.45)" : "rgba(30,30,30,0.55)";
 
   return (
     <section
       ref={sectionRef}
+      className="stats-section"
       style={{
-        background: sectionBg,
+        background: "transparent",
         padding: "clamp(40px,6vw,80px) 0",
         position: "relative",
         overflow: "hidden",
@@ -1747,7 +1771,7 @@ function Stats() {
 
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(16px,4vw,48px)", position: "relative", zIndex: 1 }}>
         {/* Section heading */}
-        <div style={{ textAlign: "center", marginBottom: 52 }}>
+        <div className="stats-section-header" style={{ textAlign: "center", marginBottom: 48 }}>
           <p style={{ color: "#e62e04", fontWeight: 700, letterSpacing: "2.5px", fontSize: 12, textTransform: "uppercase", marginBottom: 10 }}>
             By The Numbers
           </p>
@@ -1760,7 +1784,7 @@ function Stats() {
         </div>
 
         {/* Stat cards grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 24 }}>
+        <div className="stats-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 24 }}>
           {STATS.map((s, i) => (
             <StatCard key={i} stat={s} dark={dark} globalTrigger={loaded} />
           ))}
@@ -1777,7 +1801,7 @@ function Brands() {
   const titleColor = dark ? "#eee" : "#111";
 
   return (
-    <section style={{ padding: "72px 0", background: bg, overflow: "hidden", transition: "background 0.4s" }}>
+    <section style={{ padding: "72px 0", background: "transparent", overflow: "hidden", transition: "background 0.4s" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(16px,4vw,48px)", textAlign: "center", marginBottom: 40 }}>
         <p style={{ color: "#e62e04", fontWeight: 700, letterSpacing: "2px", fontSize: 13, textTransform: "uppercase", marginBottom: 10 }}>Trusted Partners</p>
         <h2 style={{ fontSize: "clamp(24px, 3.5vw, 36px)", fontWeight: 800, color: titleColor, fontFamily: "'Georgia', serif", transition: "color 0.4s" }}>Our Brand Partners</h2>
@@ -1817,10 +1841,19 @@ function AgentProgram() {
   const inputColor = dark ? "#eee" : "#333";
 
   return (
-    <section style={{ padding: "96px 0", background: bg, transition: "background 0.4s" }}>
+    <section className="agent-section" style={{ padding: "72px 0", background: "transparent", transition: "background 0.4s" }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .agent-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+          .agent-img-wrap { order: 1 !important; }
+          .agent-text-wrap { order: 2 !important; }
+          .agent-img { height: 200px !important; }
+          .agent-btn-wrap { display: flex !important; justify-content: flex-start !important; }
+        }
+      `}</style>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(16px,4vw,48px)" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(32px,5vw,80px)", alignItems: "center" }}>
-          <div>
+        <div className="agent-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(32px,5vw,80px)", alignItems: "center" }}>
+          <div className="agent-text-wrap">
             <p style={{ color: "#e62e04", fontWeight: 700, letterSpacing: "2px", fontSize: 13, textTransform: "uppercase", marginBottom: 14 }}>Join the Network</p>
             <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 800, color: titleColor, fontFamily: "'Georgia', serif", marginBottom: 20, lineHeight: 1.2, transition: "color 0.4s" }}>Agent Program</h2>
             <p style={{ fontSize: 17, color: bodyColor, lineHeight: 1.8, marginBottom: 32, transition: "color 0.4s" }}>
@@ -1836,14 +1869,17 @@ function AgentProgram() {
                 </div>
               ))}
             </div>
-            <button onClick={() => setShowModal(true)} style={{ background: "#e62e04", color: "#fff", border: "none", padding: "15px 36px", borderRadius: 6, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "background 0.2s" }}
-              onMouseEnter={e => e.target.style.background = "#c42500"}
-              onMouseLeave={e => e.target.style.background = "#e62e04"}
-            >Register as Agent →</button>
+            <div className="agent-btn-wrap">
+              <button className="agent-btn" onClick={() => setShowModal(true)}
+                style={{ background: "#e62e04", color: "#fff", border: "none", padding: "15px 36px", borderRadius: 6, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "background 0.2s", whiteSpace: "nowrap" }}
+                onMouseEnter={e => e.target.style.background = "#c42500"}
+                onMouseLeave={e => e.target.style.background = "#e62e04"}
+              >Register as Agent →</button>
+            </div>
           </div>
-          <div style={{ position: "relative" }}>
+          <div className="agent-img-wrap" style={{ position: "relative" }}>
             <div style={{ position: "absolute", top: -20, right: -20, width: "100%", height: "100%", background: "linear-gradient(135deg, #e62e04 0%, #ff6b3d 100%)", borderRadius: 16, opacity: 0.1, zIndex: 0 }} />
-            <img src="https://yourbuildmart.com/public/assets/img/register-your.jpg" alt="Agent Program" style={{ width: "100%", borderRadius: 14, objectFit: "cover", height: 400, position: "relative", zIndex: 1, boxShadow: "0 20px 60px rgba(0,0,0,0.15)" }} />
+            <img className="agent-img" src="https://yourbuildmart.com/public/assets/img/register-your.jpg" alt="Agent Program" style={{ width: "100%", borderRadius: 14, objectFit: "cover", height: 400, position: "relative", zIndex: 1, boxShadow: "0 20px 60px rgba(0,0,0,0.15)" }} />
           </div>
         </div>
       </div>
@@ -1894,95 +1930,537 @@ function AgentProgram() {
   );
 }
 
+
+
+
 // ─── TESTIMONIALS ─────────────────────────────────────────────────────────────
 function Testimonials() {
+
   const { dark } = useTheme();
-  const bg = dark ? "#0f0f0f" : "#f8f8f6";
+
+  // START FROM FIRST REAL CARD
+  const [current, setCurrent] = useState(1);
+
+  const [transitionEnabled, setTransitionEnabled] = useState(true);
+
+  // DUPLICATE CARDS FOR TRUE INFINITE LOOP
+  const extendedTestimonials = [
+    TESTIMONIALS[TESTIMONIALS.length - 1],
+    ...TESTIMONIALS,
+    TESTIMONIALS[0],
+  ];
+
+  // AUTO SLIDE
+  useEffect(() => {
+
+    const interval = setInterval(() => {
+
+      setCurrent(prev => prev + 1);
+
+    }, 4000);
+
+    return () => clearInterval(interval);
+
+  }, []);
+
+  // TRUE INFINITE LOOP LOGIC
+  useEffect(() => {
+
+    // LAST DUPLICATE REACHED
+    if (current === extendedTestimonials.length - 1) {
+
+      setTimeout(() => {
+
+        setTransitionEnabled(false);
+
+        setCurrent(1);
+
+      }, 600);
+    }
+
+    // FIRST DUPLICATE REACHED
+    if (current === 0) {
+
+      setTimeout(() => {
+
+        setTransitionEnabled(false);
+
+        setCurrent(TESTIMONIALS.length);
+
+      }, 600);
+    }
+
+    // RE-ENABLE TRANSITION
+    else {
+
+      const timer = setTimeout(() => {
+
+        setTransitionEnabled(true);
+
+      }, 50);
+
+      return () => clearTimeout(timer);
+    }
+
+  }, [current]);
+
+  const next = () => {
+    setCurrent(prev => prev + 1);
+  };
+
+  const prev = () => {
+    setCurrent(prev => prev - 1);
+  };
+
   const cardBg = dark ? "#1a1a1a" : "#fff";
+
   const titleColor = dark ? "#eee" : "#111";
+
   const textColor = dark ? "#999" : "#555";
+
   const nameColor = dark ? "#ddd" : "#111";
+
   const locationColor = dark ? "#666" : "#999";
+
   const quoteColor = dark ? "#2e2e2e" : "#f5e6e3";
-  const cardShadow = dark ? "0 2px 16px rgba(0,0,0,0.4)" : "0 2px 16px rgba(0,0,0,0.06)";
-  const hoverShadow = dark ? "0 12px 32px rgba(0,0,0,0.5)" : "0 12px 32px rgba(0,0,0,0.1)";
+
+  const cardShadow = dark
+    ? "0 2px 16px rgba(0,0,0,0.4)"
+    : "0 2px 16px rgba(0,0,0,0.06)";
 
   return (
-    <section style={{ padding: "96px 0", background: bg, transition: "background 0.4s" }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(16px,4vw,48px)" }}>
-        <div style={{ textAlign: "center", marginBottom: 60 }}>
-          <p style={{ color: "#e62e04", fontWeight: 700, letterSpacing: "2px", fontSize: 13, textTransform: "uppercase", marginBottom: 12 }}>What Clients Say</p>
-          <h2 style={{ fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 800, color: titleColor, fontFamily: "'Georgia', serif", transition: "color 0.4s" }}>Testimonials</h2>
+
+    <section
+      className="testi-section"
+      style={{
+        padding: "72px 0",
+        background: "transparent",
+        transition: "background 0.4s",
+        overflow: "hidden",
+      }}
+    >
+
+      <style>{`
+
+        .testi-wrapper{
+          display:flex;
+          align-items:center;
+          gap:16px;
+        }
+
+        .testi-carousel{
+          overflow:hidden;
+          width:100%;
+          min-width:0;
+        }
+
+        .testi-track{
+          display:flex;
+          gap:20px;
+        }
+
+        .testi-card{
+          flex:0 0 calc((100% - 40px) / 3);
+
+          border-radius:16px;
+
+          transition:
+            transform 0.3s ease,
+            background 0.4s ease;
+
+          min-width:0;
+        }
+
+        .testi-card:hover{
+          transform:translateY(-6px);
+        }
+
+        .testi-btn{
+          width:42px;
+          height:42px;
+          flex-shrink:0;
+
+          border:none;
+
+          border-radius:50%;
+
+          background:#e62e04;
+
+          color:#fff;
+
+          font-size:28px;
+
+          cursor:pointer;
+
+          z-index:20;
+
+          display:flex;
+          align-items:center;
+          justify-content:center;
+
+          box-shadow:0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width:768px){
+
+          .testi-wrapper{
+            gap:10px;
+          }
+
+          .testi-track{
+            gap:0;
+          }
+
+          .testi-card{
+            flex:0 0 100% !important;
+          }
+
+          .testi-btn{
+            width:36px;
+            height:36px;
+
+            font-size:22px;
+          }
+
+          .testi-card p{
+            font-size:13px !important;
+
+            line-height:1.65 !important;
+
+            margin-bottom:16px !important;
+
+            display:-webkit-box !important;
+
+            -webkit-line-clamp:5 !important;
+
+            -webkit-box-orient:vertical !important;
+
+            overflow:hidden !important;
+          }
+        }
+
+      `}</style>
+
+      <div
+        style={{
+          maxWidth: 1280,
+          margin: "0 auto",
+          padding: "0 clamp(16px,4vw,48px)",
+        }}
+      >
+
+        {/* HEADING */}
+        <div style={{ textAlign: "center", marginBottom: 48 }}>
+
+          <p
+            style={{
+              color: "#e62e04",
+              fontWeight: 700,
+              letterSpacing: "2px",
+              fontSize: 13,
+              textTransform: "uppercase",
+              marginBottom: 12,
+            }}
+          >
+            What Clients Say
+          </p>
+
+          <h2
+            style={{
+              fontSize: "clamp(26px, 4vw, 40px)",
+              fontWeight: 800,
+              color: titleColor,
+              fontFamily: "'Georgia', serif",
+              transition: "color 0.4s",
+            }}
+          >
+            Testimonials
+          </h2>
+
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 24 }}>
-          {TESTIMONIALS.map((t, i) => (
-            <div key={i} style={{ background: cardBg, borderRadius: 12, padding: "28px", position: "relative", boxShadow: cardShadow, transition: "transform 0.2s, box-shadow 0.2s, background 0.4s" }}
-              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = hoverShadow; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = cardShadow; }}
-            >
-              <div style={{ position: "absolute", top: 20, right: 24, fontSize: 48, color: quoteColor, lineHeight: 1, fontFamily: "serif", transition: "color 0.4s" }}>"</div>
-              <StarRating count={t.stars} />
-              <p style={{ fontSize: 14, color: textColor, lineHeight: 1.75, marginBottom: 24, position: "relative", transition: "color 0.4s" }}>{t.text}</p>
-              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <div style={{ width: 42, height: 42, borderRadius: "50%", background: t.color, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 700, fontSize: 14, flexShrink: 0 }}>{t.initials}</div>
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: 15, color: nameColor, transition: "color 0.4s" }}>{t.name}</div>
-                  <div style={{ fontSize: 13, color: locationColor, transition: "color 0.4s" }}>{t.location}</div>
+
+        {/* CAROUSEL */}
+        <div className="testi-wrapper">
+
+          {/* LEFT BUTTON */}
+          <button
+            className="testi-btn"
+            onClick={prev}
+          >
+            ‹
+          </button>
+
+          <div className="testi-carousel">
+
+          {/* TRACK */}
+          <div
+            className="testi-track"
+            style={{
+              transform: window.innerWidth <= 768
+                ? `translateX(-${current * 100}%)`
+                : `translateX(calc(-${current} * (33.333% + 6.5px)))`,
+
+              transition: transitionEnabled
+                ? "transform 0.6s ease"
+                : "none",
+            }}
+          >
+
+            {extendedTestimonials.map((t, i) => (
+
+              <div
+                className="testi-card"
+                key={i}
+                style={{
+                  background: cardBg,
+                  padding: "clamp(24px,4vw,40px)",
+                  position: "relative",
+                  boxShadow: cardShadow,
+                  minHeight: 220,
+                }}
+              >
+
+                {/* QUOTE */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 20,
+                    right: 24,
+                    fontSize: 56,
+                    color: quoteColor,
+                    lineHeight: 1,
+                    fontFamily: "serif",
+                    transition: "color 0.4s",
+                  }}
+                >
+                  "
                 </div>
+
+                {/* STARS */}
+                <StarRating count={t.stars} />
+
+                {/* TEXT */}
+                <p
+                  style={{
+                    fontSize: "clamp(14px,2vw,16px)",
+                    color: textColor,
+                    lineHeight: 1.8,
+                    marginBottom: 28,
+                    position: "relative",
+                    transition: "color 0.4s",
+                  }}
+                >
+                  {t.text}
+                </p>
+
+                {/* USER */}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 14,
+                  }}
+                >
+
+                  {/* AVATAR */}
+                  <div
+                    style={{
+                      width: 48,
+                      height: 48,
+                      borderRadius: "50%",
+                      background: t.color,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#fff",
+                      fontWeight: 700,
+                      fontSize: 15,
+                      flexShrink: 0,
+                    }}
+                  >
+                    {t.initials}
+                  </div>
+
+                  {/* NAME */}
+                  <div>
+
+                    <div
+                      style={{
+                        fontWeight: 700,
+                        fontSize: 16,
+                        color: nameColor,
+                        transition: "color 0.4s",
+                      }}
+                    >
+                      {t.name}
+                    </div>
+
+                    <div
+                      style={{
+                        fontSize: 13,
+                        color: locationColor,
+                        transition: "color 0.4s",
+                      }}
+                    >
+                      {t.location}
+                    </div>
+
+                  </div>
+
+                </div>
+
               </div>
-            </div>
-          ))}
+
+            ))}
+
+          </div>
+
+          </div>
+
+          {/* RIGHT BUTTON */}
+          <button
+            className="testi-btn"
+            onClick={next}
+          >
+            ›
+          </button>
+
         </div>
+
       </div>
+
     </section>
   );
 }
 
+
+
+
+
 // ─── BLOG SECTION ─────────────────────────────────────────────────────────────
 function BlogSection() {
   const { dark } = useTheme();
-  const bg = dark ? "#111" : "#fff";
-  const cardBg = dark ? "#1a1a1a" : "#fff";
-  const titleColor = dark ? "#eee" : "#111";
-  const h3Color = dark ? "#ddd" : "#111";
-  const cardShadow = dark ? "0 2px 16px rgba(0,0,0,0.4)" : "0 2px 16px rgba(0,0,0,0.08)";
-  const hoverShadow = dark ? "0 16px 40px rgba(0,0,0,0.5)" : "0 16px 40px rgba(0,0,0,0.12)";
-  const tagBg = dark ? "#2a1510" : "#fef0ed";
+  const [current, setCurrent] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const autoRef = useRef(null);
+
+  // Track mobile breakpoint reactively
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const visibleCards = isMobile ? 1 : 2;
+  const loopBlogs = [...BLOGS, ...BLOGS];
+
+  // Autoplay
+  useEffect(() => {
+    autoRef.current = setInterval(() => setCurrent((p) => p + 1), 4200);
+    return () => clearInterval(autoRef.current);
+  }, []);
+
+  // Infinite reset
+  useEffect(() => {
+    if (current >= BLOGS.length) {
+      setTimeout(() => setCurrent(0), 650);
+    }
+  }, [current]);
+
+  const resetAuto = () => {
+    clearInterval(autoRef.current);
+    autoRef.current = setInterval(() => setCurrent((p) => p + 1), 4200);
+  };
+
+  const next = () => { setCurrent((p) => p + 1); resetAuto(); };
+  const prev = () => { setCurrent((p) => (p === 0 ? BLOGS.length - 1 : p - 1)); resetAuto(); };
+
+  // Theme-derived values kept minimal — only things that can't be done in CSS
+  const cardGlass   = dark ? "rgba(18,18,18,0.42)"      : "rgba(255,255,255,0.14)";
+  const glassBorder = dark ? "rgba(255,255,255,0.07)"   : "rgba(255,255,255,0.18)";
+  const titleColor  = dark ? "#fff" : "#111";
+  const arrowBg     = dark ? "#242424" : "#fff";
+  const arrowColor  = dark ? "#fff"    : "#111";
+  const trackBg     = dark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)";
+
+  // Per-card width: on mobile 100%, on desktop 50% minus the gap
+  const cardWidth = visibleCards === 1 ? "100%" : "calc(50% - 10px)";
+
+  // Translate: each step moves one card-width + gap (20px)
+  const translateX = visibleCards === 1
+    ? `calc(-${current * 100}% - ${current * 20}px)`
+    : `calc(-${current * 50}% - ${current * 10}px)`;
 
   return (
-    <section style={{ padding: "96px 0", background: bg, transition: "background 0.4s" }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(16px,4vw,48px)" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 48, flexWrap: "wrap", gap: 16 }}>
-          <div>
-            <p style={{ color: "#e62e04", fontWeight: 700, letterSpacing: "2px", fontSize: 13, textTransform: "uppercase", marginBottom: 10 }}>Knowledge Hub</p>
-            <h2 style={{ fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 800, color: titleColor, fontFamily: "'Georgia', serif", transition: "color 0.4s" }}>Latest from Our Blog</h2>
+    <section className="home-blog-section">
+      <div className="home-blog-container">
+        {/* Heading */}
+        <p className="home-blog-label">Knowledge Hub</p>
+        <h2 className="home-blog-heading" style={{ color: titleColor }}>
+          Latest from Our Blog
+        </h2>
+
+        {/* Carousel */}
+        <div className="home-blog-carousel-wrap">
+          {/* Left arrow */}
+          <button
+            className="home-blog-arrow"
+            onClick={prev}
+            style={{ background: arrowBg, color: arrowColor }}
+          >❮</button>
+
+          {/* Viewport */}
+          <div className="home-blog-viewport">
+            <div
+              className="home-blog-track"
+              style={{
+                transition: current >= BLOGS.length ? "none" : "transform .65s cubic-bezier(.22,.61,.36,1)",
+                transform: translateX,
+              }}
+            >
+              {loopBlogs.map((b, i) => (
+                <div key={i} className="home-blog-card" style={{ width: cardWidth }}>
+                  <img src={b.img} alt={b.title} className="home-blog-img" />
+                  <div className="home-blog-overlay" />
+                  <div
+                    className="home-blog-glass"
+                    style={{
+                      background: cardGlass,
+                      border: `1px solid ${glassBorder}`,
+                    }}
+                  >
+                    <div className="home-blog-cat">{b.category}</div>
+                    <h3 className="home-blog-title">{b.title}</h3>
+                    <p className="home-blog-desc">{b.excerpt}</p>
+                    <div className="home-blog-footer">
+                      <a href={b.href} className="home-blog-readmore">View More →</a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          {/* Internal blog route link */}
-          <Link to="/blog" style={{ color: "#e62e04", fontWeight: 700, textDecoration: "none", fontSize: 15 }}>View All Articles →</Link>
+
+          {/* Right arrow */}
+          <button
+            className="home-blog-arrow"
+            onClick={next}
+            style={{ background: arrowBg, color: arrowColor }}
+          >❯</button>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 28 }}>
-          {BLOGS.map((b, i) => (
-            <a key={i} href={b.href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-              <div style={{ borderRadius: 12, overflow: "hidden", background: cardBg, boxShadow: cardShadow, transition: "transform 0.25s, box-shadow 0.25s, background 0.4s" }}
-                onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-5px)"; e.currentTarget.style.boxShadow = hoverShadow; }}
-                onMouseLeave={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = cardShadow; }}
-              >
-                <div style={{ height: 200, overflow: "hidden" }}>
-                  <img src={b.img} alt={b.title} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
-                    onMouseEnter={e => e.target.style.transform = "scale(1.05)"}
-                    onMouseLeave={e => e.target.style.transform = "scale(1)"}
-                  />
-                </div>
-                <div style={{ padding: "22px 22px 26px" }}>
-                  <span style={{ display: "inline-block", background: tagBg, color: "#e62e04", fontSize: 11, fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", padding: "4px 10px", borderRadius: 4, marginBottom: 12, transition: "background 0.4s" }}>{b.category}</span>
-                  <h3 style={{ fontSize: 16, fontWeight: 700, color: h3Color, lineHeight: 1.5, marginBottom: 16, transition: "color 0.4s" }}>{b.title}</h3>
-                  <span style={{ color: "#e62e04", fontWeight: 700, fontSize: 14, display: "flex", alignItems: "center", gap: 6 }}>
-                    Read More
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                  </span>
-                </div>
-              </div>
-            </a>
+
+        {/* Dots */}
+        <div className="home-blog-dots">
+          {BLOGS.map((_, i) => (
+            <button
+              key={i}
+              className="home-blog-dot"
+              onClick={() => { setCurrent(i); resetAuto(); }}
+              style={{
+                width: current % BLOGS.length === i ? 22 : 7,
+                background: current % BLOGS.length === i ? "#e62e04" : trackBg,
+              }}
+            />
           ))}
         </div>
       </div>
@@ -1993,28 +2471,19 @@ function BlogSection() {
 
 // ─── APP ─────────────────────────────────────────────────────────────────────
 export default function App() {
-  const [dark, setDark] = useState(false);
-  const toggle = () => setDark(d => !d);
-
-  useEffect(() => {
-    document.body.style.background = dark ? "#0d0d0d" : "#fff";
-    document.body.style.transition = "background 0.4s ease";
-  }, [dark]);
-
+  const { dark } = useTheme();
   return (
-    <ThemeContext.Provider value={{ dark, toggle }}>
-      <div style={{ fontFamily: "'Segoe UI', 'Helvetica Neue', sans-serif", background: dark ? "#0d0d0d" : "#fff", transition: "background 0.4s ease" }}>
-        <SharedHeader activePage="/" />
-        <HeroSection />
-        <WhyUs />
-        <Categories />
-        <Stats />
-        <Brands />
-        <AgentProgram />
-        <Testimonials />
-        <BlogSection />
-        <Footer />
-      </div>
-    </ThemeContext.Provider>
+    <div style={{ fontFamily: "'Poppins', 'Segoe UI', 'Helvetica Neue', sans-serif", background: "transparent", transition: "background 0.4s ease" }}>
+      <SharedHeader activePage="/" />
+      <HeroSection />
+      <WhyUs />
+      <Categories />
+      <Stats />
+      <Brands />
+      <AgentProgram />
+      <Testimonials />
+      <BlogSection />
+      <Footer />
+    </div>
   );
 }

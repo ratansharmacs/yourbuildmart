@@ -1,126 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { SharedHeader, useTheme, ThemeContext, useCart, Footer } from "../components";
+import { SharedHeader, useTheme, useCart, Footer } from "../components";
+import { ALL_PRODUCTS, CATEGORIES_SIDEBAR, TAG_COLORS } from "../data/productsData";
 import { Link, useSearchParams } from "react-router-dom";
 
 
 // ─── PRODUCT DATA (from product.html) ────────────────────────────────────────
-const ALL_PRODUCTS = [
-  {
-    id: 54, name: "Steel Sheet",
-    img: "https://yourbuildmart.com/public/uploads/all/ht8ZZADqglloTYRX26oSKQL3YFoFOyUnR4t2bqWx.jpg",
-    // href: "https://yourbuildmart.com/steel-sections-and-accessories-products/steel-sheet-h55xs",
-    href: "/productDetail",
-    category: "Steel Sections",
-    tag: "ISO Certified",
-  },
-  {
-    id: 52, name: "Butterfly Valves",
-    img: "https://yourbuildmart.com/public/uploads/all/l3JEgHz9repFAiFyLU2p5CHjbcUPdmo0VEMec3kJ.png",
-    // href: "/products?category=Industrial+Valves",
-    href: "/productDetail",
-    category: "Industrial Valves",
-    tag: "Global Delivery",
-  },
-  {
-    id: 51, name: "Gate, Globe & Check Valves – Bolted Bonnet",
-    img: "https://yourbuildmart.com/public/uploads/all/GrLvcocreimeiNs13iOYvNZ2dMA9pLXlyrmaXvpQ.png",
-    // href: "/products?category=Industrial+Valves",
-    href: "/productDetail",
-    category: "Industrial Valves",
-    tag: "ISI Marked",
-  },
-  {
-    id: 50, name: "Fire Protection Valves",
-    img: "https://yourbuildmart.com/public/uploads/all/xT99T3DRGI7u1N22erKyEnM54VtzGhQkFOVsRrsS.jpg",
-    // href: "/products?category=Fire+Fighting",
-    href: "/productDetail",
-    category: "Fire Fighting",
-    tag: "Best Price",
-  },
-  {
-    id: 48, name: "Fire Fighting Grooved Pipe Fittings & Coupling",
-    img: "https://yourbuildmart.com/public/uploads/all/xe3TEue39X9QojFUhzC2JCbzgF3TjtBOkEWspgJx.jpg",
-    // href: "/products?category=Fire+Fighting",
-    href: "/productDetail",
-    category: "Fire Fighting",
-    tag: "ISO Certified",
-  },
-  {
-    id: 47, name: "TMT Steel Bars",
-    img: "https://yourbuildmart.com/public/uploads/all/0ER95UzZVBeagJpEPWXZm5M9SSWaZnj2CP0auTBs.gif",
-    // href: "/products?category=TMT+Steel",
-    href: "/productDetail",
-    category: "TMT Steel",
-    tag: "ISO Certified",
-  },
-  {
-    id: 42, name: "Galvanized Iron (GI) Roofing Sheets",
-    img: "https://yourbuildmart.com/public/uploads/all/skxYNbjMfCpEfEYAINnuiKLyXGnwTNIHUvjjyZHJ.jpg",
-    // href: "https://yourbuildmart.com/steel-sections-and-accessories-products/gi-corrugated-sheets",
-    href: "/productDetail",
-    category: "Steel Sections",
-    tag: "Global Delivery",
-  },
-  {
-    id: 41, name: "PEB – Pre Engineered Building",
-    img: "https://yourbuildmart.com/public/uploads/all/vVdQYPPzaBTGdJxh4jAC6EpsPXWQNgx4WPhEXWoU.jpg",
-    // href: "/products?category=PEB+Structure",
-    href: "/productDetail",
-    category: "PEB Structure",
-    tag: "Global Delivery",
-  },
-  {
-    id: 35, name: "Aluminium C-Channel",
-    img: "https://yourbuildmart.com/public/uploads/all/qvzksoytHBhKDMaxSxSwpVQtGlod5C0S4TlOvyCZ.png",
-    // href: "/products?category=Aluminium+Products",
-    href: "/productDetail",
-    category: "Aluminium Products",
-    tag: "ISI Marked",
-  },
-  {
-    id: 36, name: "Electrical Conduit Pipes",
-    img: "https://yourbuildmart.com/public/uploads/all/ylpqNpVuBFrDi40XUABTmoEqdVSVZHmXdxC04d9O.jpg",
-    // href: "/products?category=Electrical+Products",
-    href: "/productDetail",
-    category: "Electrical Products",
-    tag: "ISI Marked",
-  },
-  {
-    id: 37, name: "False Ceiling Grid System",
-    img: "https://yourbuildmart.com/public/uploads/all/Sel9jonaPtZyRXyMNJBGGzUnlOyws0lBNt78iaen.jpg",
-    // href: "/products?category=False+Ceiling",
-    href: "/productDetail",
-    category: "False Ceiling",
-    tag: "Best Price",
-  },
-  {
-    id: 38, name: "Industrial Ball Valves",
-    img: "https://yourbuildmart.com/public/uploads/all/uHmWHxUbUReKl6zaKd4xgJ3FX1MgxRpZNGULlmUP.jpg",
-    // href: "/products?category=Industrial+Valves",
-    href: "/productDetail",
-    category: "Industrial Valves",
-    tag: "ISO Certified",
-  },
-];
 
-const CATEGORIES_SIDEBAR = [
-  { name: "All Products", img: null, href: "#", count: 12 },
-  { name: "Aluminium Products", img: "https://yourbuildmart.com/public/uploads/all/qvzksoytHBhKDMaxSxSwpVQtGlod5C0S4TlOvyCZ.png", href: "/products?category=Aluminium+Products", count: 5 },
-  { name: "Electrical Products", img: "https://yourbuildmart.com/public/uploads/all/ylpqNpVuBFrDi40XUABTmoEqdVSVZHmXdxC04d9O.jpg", href: "/products?category=Electrical+Products", count: 8 },
-  { name: "False Ceiling", img: "https://yourbuildmart.com/public/uploads/all/Sel9jonaPtZyRXyMNJBGGzUnlOyws0lBNt78iaen.jpg", href: "/products?category=False+Ceiling", count: 6 },
-  { name: "Fire Fighting", img: "https://yourbuildmart.com/public/uploads/all/G98hSbCqpgGs4u7l116dQRNkdnVowdyYliKEVerr.jpg", href: "/products?category=Fire+Fighting", count: 7 },
-  { name: "Industrial Valves", img: "https://yourbuildmart.com/public/uploads/all/uHmWHxUbUReKl6zaKd4xgJ3FX1MgxRpZNGULlmUP.jpg", href: "/products?category=Industrial+Valves", count: 9 },
-  { name: "PEB Structure", img: "https://yourbuildmart.com/public/uploads/all/blJXzfApTXVc3364qVExp6aNwVo9dCs80CaEqfXG.jpg", href: "/products?category=PEB+Structure", count: 4 },
-  { name: "TMT Steel", img: "https://yourbuildmart.com/public/assets/img/steel__bars.jpg", href: "/products?category=TMT+Steel", count: 6 },
-  { name: "Steel Sections", img: "https://yourbuildmart.com/public/uploads/all/ht8ZZADqglloTYRX26oSKQL3YFoFOyUnR4t2bqWx.jpg", href: "https://yourbuildmart.com/steel-sections-and-accessories-products", count: 10 },
-];
 
-const TAG_COLORS = {
-  "ISO Certified": { bg: "#e8f5e9", color: "#2e7d32" },
-  "ISI Marked": { bg: "#e3f2fd", color: "#1565c0" },
-  "Global Delivery": { bg: "#fce4ec", color: "#c62828" },
-  "Best Price": { bg: "#fff8e1", color: "#f57f17" },
-};
 
 // ─── THEME TOGGLE (exact copy from App.jsx) ───────────────────────────────────
 
@@ -137,7 +23,7 @@ function Breadcrumb() {
 
   return (
     <div style={{
-      background: dark ? "#111" : "#f8f8f8",
+      background: "transparent",
       borderBottom: `1px solid ${dark ? "#222" : "#eee"}`,
       padding: "14px 0",
       transition: "background 0.4s, border-color 0.4s",
@@ -174,7 +60,7 @@ function ProductCard({ product, dark, index }) {
   const catColor = dark ? "#888" : "#999";
 
   return (
-    <div className="prod-card" style={{
+    <div className="prod-card ray-card" style={{
       background: cardBg,
       border: `1px solid ${border}`,
       borderRadius: 16,
@@ -578,7 +464,7 @@ function ProductsPage() {
       <ProductHero dark={dark} />
       <Breadcrumb />
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "36px 32px 60px", display: "grid", gridTemplateColumns: "260px 1fr", gap: 28, alignItems: "start" }}>
+      <div className="products-layout" style={{ maxWidth: 1280, margin: "0 auto", padding: "36px clamp(16px,4vw,32px) 60px" }}>
         {/* Sidebar */}
         <Sidebar dark={dark} activeCategory={activeCategory} onSelectCategory={handleCategoryChange} />
 
@@ -603,11 +489,7 @@ function ProductsPage() {
           )}
 
           {/* Product grid */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 20,
-          }}>
+          <div className="product-grid" style={{ display:"grid" }}>
             {paginated.map((product, idx) => (
               <ProductCard key={product.id} product={product} dark={dark} index={idx} />
             ))}
@@ -625,21 +507,12 @@ function ProductsPage() {
 
 // ─── ROOT EXPORT ──────────────────────────────────────────────────────────────
 export default function Products() {
-  const [dark, setDark] = useState(false);
-  const toggle = () => setDark(d => !d);
-
-  useEffect(() => {
-    document.body.style.background = dark ? "#0d0d0d" : "#f4f5f7";
-    document.body.style.transition = "background 0.4s ease";
-  }, [dark]);
-
+  const { dark } = useTheme();
   return (
-    <ThemeContext.Provider value={{ dark, toggle }}>
-      <div style={{ fontFamily: "'Segoe UI', 'Helvetica Neue', sans-serif", background: dark ? "#0d0d0d" : "#f4f5f7", transition: "background 0.4s ease" }}>
+    <div style={{ fontFamily: "'Segoe UI', 'Helvetica Neue', sans-serif", background: "transparent", transition: "background 0.4s ease" }}>
         <SharedHeader activePage="/products" />
         <ProductsPage />
         <Footer />
       </div>
-    </ThemeContext.Provider>
   );
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { SharedHeader, useTheme, ThemeContext, useCart, Footer } from "../components";
+import { SharedHeader, useTheme, useCart, Footer } from "../components";
+import { PRODUCT, RELATED_PRODUCTS, TOP_SELLING, DETAIL_BLOGS } from "../data/productDetailData";
 import { Link } from "react-router-dom";
 
 // ─── GLOBAL STYLES ─────────────────────────────────────────────────────────────
@@ -20,115 +21,9 @@ const GLOBAL_STYLES = `
 
 // ─── DATA ──────────────────────────────────────────────────────────────────────
 
-const PRODUCT = {
-    name: "Aluminium C-Channel",
-    category: "Aluminium Products",
-    categoryHref: "/products?category=Aluminium+Products",
-    badge: "ISO Certified",
-    tagline: "Grade 3003, 5052, 6061 & 7075 | ISO Certified | Up to 6m Length | Anodized | Sand Blasted",
-    images: [
-        "https://yourbuildmart.com/public/uploads/all/ba5iYZooFMPEMddIKtVBm4buRtxkphdnf1NhrH65.jpg",
-        "https://yourbuildmart.com/public/uploads/all/40hhZt12ecufub4RMVGpgplIBWFZjoylPT0tSs2x.jpg",
-        "https://yourbuildmart.com/public/uploads/all/qvzksoytHBhKDMaxSxSwpVQtGlod5C0S4TlOvyCZ.png",
-    ],
-    specs: [
-        { label: "Standard", value: "ISO / ISI Certified" },
-        { label: "Type", value: "Square and Rectangle" },
-        { label: "Size", value: "As per design" },
-        { label: "Length", value: "6 metres" },
-        { label: "Application", value: "Building & Construction" },
-        { label: "Surface", value: "Anodized or Sand Blasted" },
-        { label: "Packing", value: "Standard Export Package (Bundles / Customized)" },
-        { label: "Lead Time", value: "21 Days" },
-        { label: "Quantity", value: "As per requirement" },
-    ],
-    tabs: [
-        {
-            id: "overview",
-            label: "Overview",
-            content: `<p>An aluminium C-channel is a structural component with a distinctive C-shaped cross-section, widely used for its lightweight, strength, and corrosion-resistant properties. Made from high-grade aluminium, these channels are engineered to meet the demands of modern construction, manufacturing, and design. Their adaptability makes them a preferred choice across multiple industries.</p>`,
-        },
-        {
-            id: "features",
-            label: "Key Features",
-            content: `<ol>
-        <li><strong>Durable and Lightweight</strong><ul><li>High strength-to-weight ratio ensures excellent structural integrity without adding unnecessary weight.</li><li>Ideal for applications requiring easy handling and transport.</li></ul></li>
-        <li><strong>Corrosion Resistance</strong><ul><li>Natural resistance to rust and corrosion makes aluminium C-channels suitable for both indoor and outdoor use.</li><li>Perfect for environments exposed to moisture, chemicals, and extreme weather conditions.</li></ul></li>
-        <li><strong>Customizable Finishes</strong><ul><li>Available in raw, anodized, or powder-coated finishes to match your specific aesthetic and functional requirements.</li><li>Offers a sleek and modern appearance, enhancing design flexibility.</li></ul></li>
-        <li><strong>Ease of Fabrication</strong><ul><li>Easy to cut, weld, and machine, simplifying customization and installation.</li><li>Can be tailored to fit various project specifications.</li></ul></li>
-      </ol>`,
-        },
-        {
-            id: "applications",
-            label: "Applications",
-            content: `<p>Our aluminium C-channels are versatile and find usage in a wide range of applications, including:</p>
-        <ul>
-          <li><strong>Construction &amp; Architecture</strong> — Structural frameworks for windows, doors, curtain walls, and partition walls.</li>
-          <li><strong>Automotive &amp; Transportation</strong> — Components for lightweight vehicle frames, trailers, and cargo carriers.</li>
-          <li><strong>Industrial &amp; Manufacturing</strong> — Machinery enclosures, structural support for equipment, and cable management systems.</li>
-          <li><strong>DIY &amp; Home Projects</strong> — Custom furniture, shelving brackets, and decorative trims for modern interiors.</li>
-        </ul>`,
-        },
-        {
-            id: "advantages",
-            label: "Advantages",
-            content: `<p>Aluminium C-channels are a top choice for numerous industries:</p>
-        <ul>
-          <li><strong>Lightweight Yet Strong</strong> — High strength-to-weight ratio reduces labor costs and project timelines.</li>
-          <li><strong>Corrosion Resistance</strong> — Performs exceptionally in environments exposed to moisture, chemicals, and extreme weather.</li>
-          <li><strong>Excellent Fabrication</strong> — Easy to cut, weld, and machine for seamless customization.</li>
-          <li><strong>Aesthetic Appeal</strong> — Clean, modern appearance available in raw, anodized, and powder-coated finishes.</li>
-          <li><strong>Cost-Effective</strong> — Lower maintenance requirements and longer lifespan make it cost-efficient over time.</li>
-          <li><strong>Eco-Friendly</strong> — 100% recyclable without losing quality, significantly reducing carbon footprint.</li>
-          <li><strong>UV Resistant</strong> — Does not degrade or weaken when exposed to sunlight.</li>
-          <li><strong>Thermal &amp; Electrical Conductivity</strong> — Suitable for specialized applications like heat sinks and cable management.</li>
-        </ul>`,
-        },
-        {
-            id: "why",
-            label: "Why Choose Us",
-            content: `<p>YourBuildMart delivers premium aluminium C-channels with the highest quality standards:</p>
-        <ul>
-          <li><strong>ISO &amp; ISI Certified</strong> — Every product meets international quality standards.</li>
-          <li><strong>Global Delivery</strong> — We ship to Africa, Europe, Middle East, and beyond with reliable logistics partners.</li>
-          <li><strong>Custom Sizes</strong> — We supply in bulk or custom sizes tailored to every industry and application.</li>
-          <li><strong>Expert Support</strong> — Our team of specialists provides round-the-clock assistance for your project needs.</li>
-          <li><strong>Competitive Pricing</strong> — Best-in-market prices with no compromise on quality.</li>
-        </ul>`,
-        },
-        {
-            id: "contact",
-            label: "Contact Us",
-            content: `<p>Searching for durable and precise Aluminium C-Channels for your next project? Get in touch with YourBuildMart for premium aluminium profiles and professional support.</p>
-        <p><strong>📍 UAE:</strong> Unit 13 &amp; 14, 1st Floor, Princess Cars Building, Next to Oasis Mall, Sheikh Zayed Road, Dubai, UAE</p>
-        <p><strong>📱 UAE Contact:</strong> +971 58 676 6102</p>
-        <p><strong>📍 India:</strong> #259, Block A, 201, 1st Floor, Silver Oak Road, Ghitorni New Delhi-110030, India</p>
-        <p><strong>📱 India Contact:</strong> +91 83830 01449, +91 83284 08325</p>
-        <p><strong>✉ Email:</strong> contact@yourbuildmart.com</p>
-        <p>We supply aluminium C-profiles in bulk or custom sizes for every industry and application.</p>`,
-        },
-    ],
-};
 
-const RELATED_PRODUCTS = [
-    { name: "Aluminium Products", href: "/products?category=Aluminium+Products", img: "https://yourbuildmart.com/public/uploads/all/qvzksoytHBhKDMaxSxSwpVQtGlod5C0S4TlOvyCZ.png" },
-    { name: "Electrical Products", href: "/products?category=Electrical+Products", img: "https://yourbuildmart.com/public/uploads/all/ylpqNpVuBFrDi40XUABTmoEqdVSVZHmXdxC04d9O.jpg" },
-    { name: "False Ceiling Products", href: "/products?category=False+Ceiling", img: "https://yourbuildmart.com/public/uploads/all/Sel9jonaPtZyRXyMNJBGGzUnlOyws0lBNt78iaen.jpg" },
-    { name: "Industrial Valves", href: "/products?category=Industrial+Valves", img: "https://yourbuildmart.com/public/uploads/all/uHmWHxUbUReKl6zaKd4xgJ3FX1MgxRpZNGULlmUP.jpg" },
-];
 
-const TOP_SELLING = [
-    { name: "PVC Insulated Electrical Wires", href: "/products?category=Electrical+Products", img: "https://yourbuildmart.com/public/uploads/all/ZIBhJ0c7yPTzBRR20exXTLMIfQLuY73ckql4h9dG.jpg" },
-    { name: "PEB - Pre Engineered Building", href: "/products?category=PEB+Structure", img: "https://yourbuildmart.com/public/uploads/all/vVdQYPPzaBTGdJxh4jAC6EpsPXWQNgx4WPhEXWoU.jpg" },
-    { name: "False Ceiling Joint Tape", href: "/products?category=False+Ceiling", img: "https://yourbuildmart.com/public/uploads/all/1KoPWR6bXzYDdzHZzVnRoqHutYcij7euEiFbu0KP.jpg" },
-    { name: "Aluminium C-Channel", href: "/products?category=Aluminium+Products", img: "https://yourbuildmart.com/public/uploads/all/40hhZt12ecufub4RMVGpgplIBWFZjoylPT0tSs2x.jpg" },
-];
 
-const BLOGS = [
-    { title: "Affordable Construction Material for African and European Countries", category: "LOGISTIC SERVICE", href: "/blog/affordable-construction-material-for-african-and-european-countries", img: "https://yourbuildmart.com/public/uploads/all/oaEiFmcHGkRJizyKXL5WZMZSeqeHTu7HoNeudTJZ.jpg" },
-    { title: "Cladded Valves: What You Need to Know", category: "ORDER PROTECTION", href: "/blog/cladded-valves", img: "https://yourbuildmart.com/public/uploads/all/ueOyzSRgkdaNabL9MoVBRGhSQcC82VdkZup4qpdb.jpg" },
-    { title: "TMT Steel Bars: The Backbone of Modern Construction", category: "INDUSTRY INSIGHTS", href: "/blog/tmt-steel-bars-the-backbone-of-modern-construction", img: "https://yourbuildmart.com/public/uploads/all/NyxEjph6tvdW6iBmKI2jpOFekIrYacpg52T2Ne5S.jpg" },
-];
 
 // ─── HEADER ────────────────────────────────────────────────────────────────────
 
@@ -139,7 +34,7 @@ function Breadcrumb() {
     return (
         <section style={{ background: dark ? "#0d0d0d" : "#f9f9f9", borderBottom: dark ? "1px solid #1a1a1a" : "1px solid #ebebeb", position: "relative" }}>
             <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "linear-gradient(90deg,#e62e04,#ff6b3d,#e62e04)" }} />
-            <div style={{ maxWidth: 1280, margin: "0 auto", padding: "18px 48px", display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ maxWidth: 1280, margin: "0 auto", padding: "18px clamp(16px,4vw,48px)", display: "flex", alignItems: "center", gap: 8 }}>
                 {[
                     { label: "Home", href: "/" },
                     { label: "Products", href: "/products" },
@@ -301,7 +196,7 @@ function ProductInfo({ dark }) {
             </div>
 
             {/* Trust badges */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8 }}>
+            <div className="detail-trust-grid" style={{ gap: 8 }}>
                 {trust.map(t => (
                     <div key={t.label} style={{ textAlign: "center", padding: "12px 8px", background: dark ? "#1a1a1a" : "#f8f8f8", borderRadius: 10, border: `1px solid ${cardBorder}` }}>
                         <div style={{ fontSize: 18, marginBottom: 4 }}>{t.icon}</div>
@@ -331,13 +226,13 @@ function ProductInfo({ dark }) {
                     <label style={{ fontSize: 13, fontWeight: 600, color: textMuted, display: "block", marginBottom: 8 }}>Quantity (Min. 10)</label>
                     <div style={{ display: "flex", alignItems: "center", gap: 0, width: "fit-content", border: `1px solid ${dark ? "#333" : "#ddd"}`, borderRadius: 10, overflow: "hidden" }}>
                         <button onClick={() => setQty(q => Math.max(10, q - 1))}
-                            style={{ width: 44, height: 44, border: "none", background: dark ? "#1a1a1a" : "#f5f5f5", color: dark ? "#fff" : "#333", fontSize: 18, cursor: "pointer", transition: "background 0.2s" }}
+                            style={{ width: 44, height: 44, border: "none", background: "transparent", color: dark ? "#fff" : "#333", fontSize: 18, cursor: "pointer", transition: "background 0.2s" }}
                             onMouseEnter={e => e.currentTarget.style.background = "#e62e04"} onMouseLeave={e => e.currentTarget.style.background = dark ? "#1a1a1a" : "#f5f5f5"}>−</button>
                         <input type="number" value={qty} min={10}
                             onChange={e => setQty(Math.max(10, Number(e.target.value)))}
-                            style={{ width: 72, height: 44, border: "none", textAlign: "center", fontSize: 16, fontWeight: 700, background: dark ? "#111" : "#fff", color: textMain, outline: "none" }} />
+                            style={{ width: 72, height: 44, border: "none", textAlign: "center", fontSize: 16, fontWeight: 700, background: "transparent", color: textMain, outline: "none" }} />
                         <button onClick={() => setQty(q => q + 1)}
-                            style={{ width: 44, height: 44, border: "none", background: dark ? "#1a1a1a" : "#f5f5f5", color: dark ? "#fff" : "#333", fontSize: 18, cursor: "pointer", transition: "background 0.2s" }}
+                            style={{ width: 44, height: 44, border: "none", background: "transparent", color: dark ? "#fff" : "#333", fontSize: 18, cursor: "pointer", transition: "background 0.2s" }}
                             onMouseEnter={e => e.currentTarget.style.background = "#e62e04"} onMouseLeave={e => e.currentTarget.style.background = dark ? "#1a1a1a" : "#f5f5f5"}>+</button>
                     </div>
                 </div>
@@ -444,7 +339,7 @@ function RightSidebar({ dark }) {
     );
 
     return (
-        <aside style={{ width: 260, flexShrink: 0, position: "sticky", top: 90, alignSelf: "flex-start" }}>
+        <aside className="detail-right-sidebar" style={{ width: 260, flexShrink: 0, position: "sticky", top: 90, alignSelf: "flex-start" }}>
 
             {/* Related Products */}
             <SideSection title="Related Products">
@@ -464,7 +359,7 @@ function RightSidebar({ dark }) {
 
             {/* Blog Posts */}
             <SideSection title="Latest Blogs">
-                {BLOGS.map(b => (
+                {DETAIL_BLOGS.map(b => (
                     <a key={b.title} href={b.href} target="_blank" rel="noopener noreferrer"
                         style={{ display: "block", padding: "12px 16px", textDecoration: "none", borderBottom: `1px solid ${dark ? "#1a1a1a" : "#f0f0f0"}`, transition: "background 0.2s" }}
                         onMouseEnter={e => e.currentTarget.style.background = dark ? "#1a1a1a" : "#fef0ed"}
@@ -510,7 +405,7 @@ function TopSelling({ dark }) {
                 <Link to="/products"
                     style={{ fontSize: 13, fontWeight: 700, color: "#e62e04", textDecoration: "none" }}>View All →</Link>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 16 }}>
+            <div className="top-selling-grid" style={{ gap: 16 }}>
                 {TOP_SELLING.map((p, i) => {
                     const [hovered, setHovered] = useState(false);
                     return (
@@ -545,22 +440,22 @@ function ProductDetailContent() {
             <Breadcrumb />
 
             {/* Page title bar */}
-            <div style={{ background: dark ? "#111" : "#fff", borderBottom: dark ? "1px solid #1a1a1a" : "1px solid #eee" }}>
-                <div style={{ maxWidth: 1280, margin: "0 auto", padding: "20px 48px" }}>
+            <div style={{ background: "transparent", borderBottom: dark ? "1px solid #1a1a1a" : "1px solid #eee" }}>
+                <div style={{ maxWidth: 1280, margin: "0 auto", padding: "20px clamp(16px,4vw,48px)" }}>
                     <h2 style={{ fontSize: 20, fontWeight: 800, color: textMain, letterSpacing: "-0.5px" }}>{PRODUCT.name}</h2>
                 </div>
             </div>
 
-            <div style={{ maxWidth: 1280, margin: "0 auto", padding: "36px 48px 72px" }}>
+            <div style={{ maxWidth: 1280, margin: "0 auto", padding: "36px clamp(16px,4vw,48px) 72px" }}>
 
                 {/* ── HERO ROW: Gallery + Info ── */}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, marginBottom: 36, animation: "fadeUp 0.5s ease" }}>
+                <div className="detail-hero-grid" style={{ marginBottom: 36, animation: "fadeUp 0.5s ease" }}>
                     <ImageGallery images={PRODUCT.images} dark={dark} />
                     <ProductInfo dark={dark} />
                 </div>
 
                 {/* ── TABS + SIDEBAR ROW ── */}
-                <div style={{ display: "flex", gap: 28, alignItems: "flex-start" }}>
+                <div className="detail-tabs-row" style={{ display: "flex", gap: 28, alignItems: "flex-start" }}>
                     <div style={{ flex: 1, minWidth: 0 }}>
                         <ContentTabs dark={dark} />
                         <TopSelling dark={dark} />
@@ -584,8 +479,7 @@ export default function ProductDetailPage() {
 
     return (
         <ThemeContext.Provider value={{ dark, toggle }}>
-            <style>{GLOBAL_STYLES}</style>
-            <div style={{ fontFamily: "'Segoe UI', 'Helvetica Neue', sans-serif", transition: "background 0.4s ease" }}>
+                  <div style={{ fontFamily: "'Segoe UI', 'Helvetica Neue', sans-serif", transition: "background 0.4s ease" }}>
                 <SharedHeader activePage="/productDetail" />
                 <ProductDetailContent />
                 <Footer />
