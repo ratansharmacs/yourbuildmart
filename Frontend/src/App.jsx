@@ -2456,10 +2456,11 @@ function BlogSection() {
 
           .blog-card{
             width:100% !important;
+            flex-shrink:0 !important;
           }
 
           .blog-main-card{
-            height:320px !important;
+            height:380px !important;
           }
 
           .blog-glass{
@@ -2467,7 +2468,7 @@ function BlogSection() {
             right:10px !important;
             bottom:10px !important;
             padding:10px 12px !important;
-            min-height:120px !important;
+            min-height:unset !important;
           }
 
           .blog-title{
@@ -2561,9 +2562,9 @@ function BlogSection() {
                     ? "none"
                     : "transform .65s cubic-bezier(.22,.61,.36,1)",
 
-                transform: `translateX(calc(-${
-                  current * (100 / visibleCards)
-                }% - ${current * 10}px))`,
+                transform: visibleCards === 1
+                  ? `translateX(calc(-${current * 100}% - ${current * 20}px))`
+                  : `translateX(calc(-${current * 50}% - ${current * 10}px))`,
               }}
             >
               {loopBlogs.map((b, i) => (
@@ -2573,8 +2574,9 @@ function BlogSection() {
                   style={{
                     width:
                       visibleCards === 1
-                        ? "100%"
+                        ? "calc(100% + 0px)"
                         : "calc(50% - 10px)",
+                    flexShrink: 0,
 
                     height: 360,
                     background: "#111",
