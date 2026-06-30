@@ -1,0 +1,34 @@
+/* ─── Entry point — imports all style modules ─────────────────────────────── */
+@import "./styles/global.css";
+@import "./styles/responsive.css";
+@import "./styles/about.css";
+@import "./styles/blog.css";
+@import "./styles/brands.css";
+@import "./styles/contact.css";
+@import "./styles/products.css";
+@import "./styles/productDetail.css";
+
+/* ─── Root / App shell ───────────────────────────────────────────────────────── */
+#root {
+  width: 100%;
+  max-width: 100%;
+  border-inline: none;
+  text-align: left;
+  overflow-x: hidden;
+}
+
+/* ─── Profile page responsive ─────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .profile-two-col {
+    grid-template-columns: 1fr !important;
+  }
+  .profile-sidebar-sticky {
+    display: none !important;
+  }
+  .profile-mobile-tabs {
+    display: flex !important;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .profile-mobile-tabs::-webkit-scrollbar { display: none; }
+}

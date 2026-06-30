@@ -1,0 +1,16 @@
+/* ─── Brands Page Styles ─────────────────────────────────────────────────────── */
+.brands-layout      { display: flex; gap: 32px; align-items: flex-start; }
+.brands-sidebar-col { width: 260px; flex-shrink: 0; }
+.brand-card-grid    { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+.brands-toolbar     { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
+
+@media (max-width: 900px) {
+  .brands-layout        { flex-direction: column; }
+  .brands-sidebar-col   { width: 100%; }
+}
+@media (max-width: 600px) {
+  .brands-toolbar       { flex-direction: column; align-items: stretch; }
+}
+@media (max-width: 480px) {
+  .brand-card-grid      { grid-template-columns: repeat(2, 1fr); }
+}

@@ -1,0 +1,15 @@
+/* ─── Products Page ──────────────────────────────────────────────────────────── */
+.products-layout { display: grid; grid-template-columns: 240px 1fr; gap: 24px; align-items: start; }
+.product-grid    { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+.sidebar-filter-card {
+  border-radius: 12px;
+  padding: 20px;
+  position: sticky;
+  top: 100px;
+  transition: background 0.4s, border-color 0.4s;
+}
+
+@media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 900px)  { .products-layout { grid-template-columns: 1fr; } .products-sidebar { display: none !important; } }
+@media (max-width: 500px)  { .product-grid { grid-template-columns: 1fr; } }

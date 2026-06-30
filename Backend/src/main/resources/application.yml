@@ -1,0 +1,104 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  config:
+    import: optional:file:.env[.properties]
+
+  application:
+    name: yourbuildmart-backend
+
+  # ─── DataSource ──────────────────────────────────
+  datasource:
+    url: jdbc:mysql://localhost:3306/yourbuildmart?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+  # ─── JPA / Hibernate ─────────────────────────────
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+        use_sql_comments: true
+        jdbc:
+          batch_size: 20
+        order_inserts: true
+        order_updates: true
+
+  # ─── Mail ────────────────────────────────────────
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME:noreply@yourbuildmart.com}
+    password: ${MAIL_PASSWORD:changeme}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
+  # ─── Multipart / File Upload ─────────────────────
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 50MB
+
+# ─── JWT ─────────────────────────────────────────────
+jwt:
+  secret: ${JWT_SECRET}
+  access-token-expiration: 86400000
+  refresh-token-expiration: 604800000
+
+# ─── Admin Seed ──────────────────────────────────────
+admin:
+  email: ${ADMIN_EMAIL:info@yourbuildmart.com}
+  password: ${ADMIN_PASSWORD}
+  name: YourBuildMart Admin
+
+# ─── File Storage & Email ────────────────────────────
+app:
+  upload:
+    dir: uploads
+    max-file-size-mb: 5
+  email:
+    enabled: ${EMAIL_ENABLED:false}
+    from-name: YourBuildMart
+    from-address: ${MAIL_USERNAME:noreply@yourbuildmart.com}
+  frontend:
+    url: ${FRONTEND_URL:http://localhost:5173}
+
+# ─── Springdoc / Swagger ─────────────────────────────
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+  show-actuator: false
+
+# ─── Logging ─────────────────────────────────────────
+logging:
+  level:
+    root: INFO
+    com.yourbuildmart: DEBUG
+    org.springframework.security: INFO
