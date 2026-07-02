@@ -31,3 +31,5 @@ Thumbs.db
 # ─── Backups / scratch files ──────────────────────────────────────────────
 *.bak
 *.tmp
+/uploads
+Backend/src/main/resources/.env.properties

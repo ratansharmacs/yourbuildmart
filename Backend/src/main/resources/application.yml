@@ -1,18 +1,18 @@
 server:
-  port: 8080
+  port: ${APP_PORT}
   servlet:
     context-path: /
 
 spring:
   config:
-    import: optional:file:.env[.properties]
+    import: classpath:.env.properties
 
   application:
     name: yourbuildmart-backend
 
   # ─── DataSource ──────────────────────────────────
   datasource:
-    url: jdbc:mysql://localhost:3306/yourbuildmart?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    url: ${DB_URL}
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver

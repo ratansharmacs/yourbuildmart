@@ -121,7 +121,8 @@ public class SecurityConfig {
         config.setAllowedOrigins(List.of(
                 "http://localhost:5173",   // Vite dev server
                 "http://localhost:3000",
-                "https://yourbuildmart.com"
+                "https://www.vrybm.com",
+                "https://vrybm.com"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
